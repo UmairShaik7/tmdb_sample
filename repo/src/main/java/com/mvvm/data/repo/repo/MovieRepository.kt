@@ -1,4 +1,4 @@
-package com.mvvm.data.repo
+package com.mvvm.data.repo.repo
 
 interface MovieRepository {
 

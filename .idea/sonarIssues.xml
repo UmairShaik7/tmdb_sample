@@ -153,7 +153,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/repo/MovieRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/ApiFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/Apis.kt">
           <value>
             <set />
           </value>
@@ -174,6 +184,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/TmdbApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/res/layout/tasks_frag.xml">
           <value>
             <set />
           </value>
