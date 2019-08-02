@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../RetrofitKotlinDeferred/app/src/main/java/io/navendra/retrofitkotlindeferred/service/RetrofitFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
@@ -159,6 +164,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/RetrofitFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/Services.kt">
           <value>
             <set />
           </value>

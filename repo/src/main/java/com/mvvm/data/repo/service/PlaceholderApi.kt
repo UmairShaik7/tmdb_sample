@@ -1,21 +1,13 @@
 package com.mvvm.data.repo.service
 
-import io.navendra.retrofitkotlindeferred.data.PlaceholderPhotos
-import io.navendra.retrofitkotlindeferred.data.PlaceholderPosts
-import io.navendra.retrofitkotlindeferred.data.PlaceholderUsers
-import kotlinx.coroutines.Deferred
+import com.mvvm.data.repo.model.PlaceholderUsers
 import retrofit2.Response
 import retrofit2.http.GET
 
-interface PlaceholderApi{
-
-    @GET("/posts")
-    fun getPosts() : Deferred<Response<List<PlaceholderPosts>>>
+interface PlaceholderApi {
 
     @GET("/users")
-    fun getUsers() : Deferred<Response<List<PlaceholderUsers>>>
+    suspend fun getUsers(): Response<List<PlaceholderUsers>>
 
-    @GET("/photos")
-    fun getPhotos() : Deferred<Response<List<PlaceholderPhotos>>>
 
 }
