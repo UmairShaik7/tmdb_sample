@@ -1,7 +1,8 @@
 package com.mvvm.data.repo.model
 
-import android.content.Context
-import androidx.room.*
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 
 data class MoviesResponse(
@@ -19,10 +20,12 @@ data class Dates(
 
 @Entity
 data class Result(
+    @PrimaryKey
+    @ColumnInfo(name = "id")
+    val id: Int,
     val adult: Boolean,
     val backdrop_path: String,
-    val genre_ids: List<Int>,
-    val id: Int,
+    val genre_ids: MutableList<Int>,
     val original_language: String,
     val original_title: String,
     val overview: String,
@@ -33,23 +36,11 @@ data class Result(
     val video: Boolean,
     val vote_average: Double,
     val vote_count: Int
-)
+) {
 
-@Dao
-interface ResultsDao {
-    @Query("SELECT * FROM result")
-    fun getAll(): List<Result>
 }
 
-@Database(entities = arrayOf(Result::class), version = 1)
-abstract class AppDatabase : RoomDatabase() {
-    abstract fun resultDao(): ResultsDao
-}
 
-private fun createDataBase(context: Context): AppDatabase {
-    val result = Room.databaseBuilder(
-        context.applicationContext,
-        AppDatabase::class.java, "Tasks.db"
-    ).build()
-    return result
-}
+
+
+

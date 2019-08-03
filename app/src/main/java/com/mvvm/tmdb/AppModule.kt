@@ -1,5 +1,6 @@
 package com.mvvm.tmdb
 
+import com.mvvm.data.repo.db.DBService
 import com.mvvm.data.repo.repo.MovieRepositoryImpl
 import com.mvvm.data.repo.service.RetrofitFactory
 import com.mvvm.data.repo.service.Services
@@ -9,12 +10,14 @@ import org.koin.dsl.module
 
 val appModule = module {
 
+    //db
+    single { DBService(get()) }
 
     //retrofit
     single { RetrofitFactory() }
 
     //service
-    single { Services(get()) }
+    single { Services(get(), get()) }
 
 
     // single instance of Repo
@@ -23,3 +26,4 @@ val appModule = module {
     // MyViewModel ViewModel
     viewModel { HomeFragmentViewModel(get()) }
 }
+
