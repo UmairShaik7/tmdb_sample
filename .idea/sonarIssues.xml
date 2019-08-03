@@ -8,12 +8,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../KotlinCoroutinesRetrofit/app/src/main/java/com/chase/kotlincoroutines/network/RetrofitService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../RetrofitKotlinDeferred/app/src/main/java/io/navendra/retrofitkotlindeferred/service/RetrofitFactory.kt">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../RetrofitKotlinDeferred/app/src/main/java/io/navendra/retrofitkotlindeferred/ui/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/.gitignore">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
           <value>
             <set />
           </value>
@@ -138,6 +158,21 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/model/MoviesResponse.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/model/PlaceholderUsers.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/model/TmdbMovie.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/CoroutineCallAdapterFactory.kt">
           <value>
             <set />
@@ -154,6 +189,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/repo/MovieRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/repo/MovieRepositoryImpl.kt">
           <value>
             <set />
           </value>
@@ -184,6 +224,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/TmdbApi.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/data/source/DefaultTasksRepository.kt">
           <value>
             <set />
           </value>
@@ -219,6 +264,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/models/CommunityResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../koin-samples/samples/android-weatherapp/app/build.gradle">
           <value>
             <set />
           </value>
