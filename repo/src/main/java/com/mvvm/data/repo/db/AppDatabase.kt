@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.mvvm.data.repo.model.Result
 
 @Database(entities = [Result::class], version = 1, exportSchema = false)
-@TypeConverters(DataConverter::class)
+@TypeConverters(GenreConverter::class, DateConverters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun resultDao(): ResultsDao
 }

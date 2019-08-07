@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        tools:context=".ui.home.HomeFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.home.HomeFragment">
 
     <data>
+
         <import type="android.view.View" />
 
         <import type="androidx.core.content.ContextCompat" />
@@ -14,14 +16,39 @@
 
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <LinearLayout
         android:id="@+id/coordinator_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/main_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/latest_movies" />
 
         <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/tasks_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            android:id="@+id/latest_movies_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:items="@{viewmodel.latestMoviesResult}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <TextView
+            style="@style/main_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/top_movies" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/top_movies_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:items="@{viewmodel.topMoviesResult}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    </LinearLayout>
 </layout>

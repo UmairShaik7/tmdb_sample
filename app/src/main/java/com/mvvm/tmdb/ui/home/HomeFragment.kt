@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
+import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -21,6 +19,8 @@ class HomeFragment : Fragment() {
     private lateinit var viewDataBinding: FragmentHomeBinding
     // lazy inject MyViewModel
     val vm: HomeFragmentViewModel by viewModel()
+    private lateinit var latestMoviesListAdapter: MoviesAdapter
+    private lateinit var topMoviesListAdapter: MoviesAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +28,8 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         //inflater.inflate(R.layout.fragment_home, container, false)
-        viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        viewDataBinding = FragmentHomeBinding.inflate(inflater, container, false)
+        //.inflate(inflater, R.layout.fragment_home, container, false)
         viewDataBinding.viewmodel = vm
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
         return viewDataBinding.root
@@ -36,14 +37,20 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpObservable()
+        setupLatestMoviesListAdapter()
+        setupTopMoviesListAdapter()
         vm.getMovies()
     }
 
-    private fun setUpObservable() {
-        vm.item.observe(this, Observer {
-            //TODO
-        })
+    private fun setupTopMoviesListAdapter() {
+        topMoviesListAdapter = MoviesAdapter(vm)
+        viewDataBinding.topMoviesList.adapter = topMoviesListAdapter
     }
+
+    private fun setupLatestMoviesListAdapter() {
+        latestMoviesListAdapter = MoviesAdapter(vm)
+        viewDataBinding.latestMoviesList.adapter = latestMoviesListAdapter
+    }
+
 
 }

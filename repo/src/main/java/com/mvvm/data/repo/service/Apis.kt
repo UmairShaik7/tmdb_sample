@@ -6,8 +6,12 @@ import retrofit2.http.GET
 
 interface Apis {
 
-    @GET("movie/latest")
+    @GET("movie/now_playing")
     suspend fun getLatestMovies(): Response<MoviesResponse>
+
+
+    @GET("movie/top_rated")
+    suspend fun getTopMovies(): Response<MoviesResponse>
 
 
 }

@@ -1,20 +1,20 @@
 package com.mvvm.tmdb
 
 import android.app.Application
-import com.mvvm.data.repo.db.DBService
+import com.mvvm.data.repoModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
-class MainApplication : Application() {
+class AppMainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
         // start Koin context
         startKoin {
-            androidContext(this@MainApplication)
+            androidContext(this@AppMainApplication)
             androidLogger()
-            modules(appModule)
+            modules(listOf(appModule, repoModule))
         }
     }
 }

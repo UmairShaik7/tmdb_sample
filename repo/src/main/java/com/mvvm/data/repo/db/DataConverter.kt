@@ -1,32 +1,20 @@
 package com.mvvm.data.repo.db
 
 import androidx.room.TypeConverter
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.mvvm.data.repo.extentions.toDateLong
+import java.util.*
 
-class DataConverter {
-
+class DateConverters {
     @TypeConverter
-    fun fromGenre_ids(countryLang: List<Int>?): String? {
-        if (countryLang == null) {
-            return null
-        }
-        val gson = Gson()
-        val type = object : TypeToken<List<Int>>() {
-
-        }.getType()
-        return gson.toJson(countryLang, type)
+    fun fromTimestamp(value: Long?): Date? {
+        return value?.let { Date(it) }
     }
 
     @TypeConverter
-    fun toGenre_ids(countryLangString: String?): List<Int>? {
-        if (countryLangString == null) {
-            return null
-        }
-        val gson = Gson()
-        val type = object : TypeToken<List<Int>>() {
-
-        }.getType()
-        return gson.fromJson(countryLangString, type)
+    fun dateToTimestamp(date: Date?): Long? {
+        return date?.time?.toLong()
     }
 }
+
+
+

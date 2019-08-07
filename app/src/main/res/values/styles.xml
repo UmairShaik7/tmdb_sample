@@ -9,6 +9,24 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
-    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light"/>
+
+    <style name="Toolbar" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="movie_card_view" parent="Base.CardView">
+        <item name="cardCornerRadius">5dp</item>
+        <item name="android:layout_margin">@dimen/card_view_margin</item>
+    </style>
+
+    <style name="main_heading">
+        <item name="android:textSize">@dimen/text_20</item>
+        <item name="android:textStyle">bold|italic</item>
+
+    </style>
+
+    <style name="movie_titles">
+        <item name="android:textSize">@dimen/text_15</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
+    </style>
+
 
 </resources>

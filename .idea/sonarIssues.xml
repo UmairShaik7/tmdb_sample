@@ -33,7 +33,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/mvvm/tmdb/DataBinderMapperImpl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/AppMainApplication.kt">
           <value>
             <set />
           </value>
@@ -73,6 +83,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/search/SearchableActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/search/SuggestionProvider.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/HomeFragmentViewModel.kt">
           <value>
             <set />
@@ -98,12 +118,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/home/adapter/MovieListBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/home/adapter/MoviesAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/home/adapter/TasksAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/home/adapter/TasksListBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/main/MainActivity.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_searchable.xml">
           <value>
             <set />
           </value>
@@ -118,12 +163,37 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/movie_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/task_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/navigation/nav_graph.xml">
           <value>
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/values/dimens.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/xml/searchable.xml">
           <value>
             <set />
           </value>
@@ -153,7 +223,77 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/MainApplication.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/MainApplication.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/RepoMainApplication.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/RepoModule.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/AppConstants.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/RemoveNetworkSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/db/AppDatabase.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/db/DBService.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/db/DataConverter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/db/GenreConverter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/db/LocalDataSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/db/ResultsDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/extentions/ListExtentions.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/extentions/StringExt.kt">
           <value>
             <set />
           </value>
@@ -178,6 +318,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/RemoteNetworkSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/RemoveNetworkSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/ServiceGenerator.java">
           <value>
             <set />
@@ -198,12 +348,32 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/repo/RemoveNetworkSource.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/result/DBResult.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/result/Result.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/ApiFactory.kt">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/Apis.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/service/CustomDateAdapter.kt">
           <value>
             <set />
           </value>
@@ -228,7 +398,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/res/menu/main_activity_actions.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/data/source/DefaultTasksRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksListBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksViewModel.kt">
           <value>
             <set />
           </value>
@@ -264,6 +454,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/models/CommunityResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../here-android-sdk-examples/routing/app/src/main/java/com/here/android/example/routing/MapFragmentView.java">
           <value>
             <set />
           </value>

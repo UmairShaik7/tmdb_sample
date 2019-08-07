@@ -5,7 +5,7 @@ import androidx.room.Room
 
 class DBService(val context: Context) {
 
-    var database: AppDatabase? = null
+    var database: AppDatabase
 
     init {
         synchronized(this) {
@@ -16,7 +16,7 @@ class DBService(val context: Context) {
     private fun createDataBase(context: Context): AppDatabase {
         return Room.databaseBuilder(
             context.applicationContext,
-            AppDatabase::class.java, "Tasks.db"
+            AppDatabase::class.java, "movies.db"
         ).build()
     }
 }
