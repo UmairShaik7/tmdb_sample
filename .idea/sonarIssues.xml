@@ -223,6 +223,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/build/generated/source/kapt/debug/com/mvvm/data/repo/db/ResultsDao_Impl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/AndroidManifest.xml">
           <value>
             <set />
@@ -288,6 +293,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/extentions/AbsentLiveData.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/extentions/ListExtentions.kt">
           <value>
             <set />
@@ -314,6 +324,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/CoroutineCallAdapterFactory.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/LiveDataCallAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/repo/src/main/java/com/mvvm/data/repo/network/LiveDataCallAdapterFactory.kt">
           <value>
             <set />
           </value>
@@ -469,6 +489,11 @@
           </value>
         </entry>
         <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/fragment.kt">
           <value>
             <set />
           </value>

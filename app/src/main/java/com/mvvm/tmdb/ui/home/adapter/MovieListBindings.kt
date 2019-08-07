@@ -27,8 +27,10 @@ import com.mvvm.tmdb.R
  * [BindingAdapter]s for the [Movie]s list.
  */
 @BindingAdapter("app:items")
-fun setItems(listView: RecyclerView, items: List<Result>) {
-    (listView.adapter as MoviesAdapter).submitList(items)
+fun setItems(listView: RecyclerView, items: List<Result>?) {
+    if (!items.isNullOrEmpty()) {
+        (listView.adapter as MoviesAdapter).submitList(items)
+    }
 }
 
 @BindingAdapter("app:setImage")

@@ -15,13 +15,12 @@
  */
 package com.mvvm.data.repo.db
 
+import androidx.lifecycle.LiveData
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.extentions.mapInPlace
 import com.mvvm.data.repo.model.Result
-import com.mvvm.data.repo.result.DBResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.*
 
 
 /**
@@ -29,60 +28,26 @@ import java.util.*
  */
 class LocalDataSource(val db: DBService) {
 
-    suspend fun getLatestMovies(): DBResult<List<Result>> = withContext(Dispatchers.IO) {
-        return@withContext try {
-            DBResult.Success(
-                //db.database.resultDao().getLatestMovies(getThisYearStart(), getThisYearEnd())
-                db.database.resultDao().getMovies(AppConstants.MovieCategories.LATEST_MOVIES.type)
-            )
-        } catch (e: Exception) {
-            Error(e)
-        }
-    } as DBResult<List<Result>>
-
-    private fun getThisYearStart(): Date {
-
-        val cal = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        cal.set(Calendar.YEAR, year)
-        cal.set(Calendar.DAY_OF_YEAR, 1)
-        val start = cal.time
-        return start
-
-
-    }
-
-    private fun getThisYearEnd(): Date {
-        val cal = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        cal.set(Calendar.YEAR, year)
-        cal.set(Calendar.MONTH, 11) // 11 = december
-        cal.set(Calendar.DAY_OF_MONTH, 31) // new years eve
-
-        val end = cal.getTime()
-
-        return end
+    suspend fun getLatestMovies(): LiveData<List<Result>> = withContext(Dispatchers.IO) {
+        //db.database.resultDao().getLatestMovies(getThisYearStart(), getThisYearEnd())
+        db.database.resultDao().getMovies(AppConstants.MovieCategories.LATEST_MOVIES.type)
     }
 
 
-    suspend fun insertTopMovies(results: MutableList<Result>?) = withContext(Dispatchers.IO) {
-        results?.let {
-            it.mapInPlace { it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type) }
-            //it.updateCategory(AppConstants.MovieCategories.TOP_MOVIES.type)
+    suspend fun insertTopMovies(results: MutableList<Result>) = withContext(Dispatchers.IO) {
+        results.let { list ->
+            list.mapInPlace { it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type) }
+            //list.updateCategory(AppConstants.MovieCategories.TOP_MOVIES.type)
             db.database.resultDao().saveMovies(results)
         }
     }
 
-    suspend fun getTopMovies(): DBResult<List<Result>> = withContext(Dispatchers.IO) {
-        return@withContext try {
-            DBResult.Success(db.database.resultDao().getMovies(AppConstants.MovieCategories.TOP_MOVIES.type))
-        } catch (e: Exception) {
-            Error(e)
-        }
-    } as DBResult<List<Result>>
+    suspend fun getTopMovies(): LiveData<List<Result>> = withContext(Dispatchers.Main) {
+        db.database.resultDao().getMovies(AppConstants.MovieCategories.TOP_MOVIES.type)
+    }
 
-    suspend fun insertLatestMovies(results: MutableList<Result>) = withContext(Dispatchers.IO){
-        results?.let {
+    suspend fun insertLatestMovies(results: MutableList<Result>) = withContext(Dispatchers.IO) {
+        results.let {
             it.mapInPlace { it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type) }
             db.database.resultDao().saveMovies(results)
         }
