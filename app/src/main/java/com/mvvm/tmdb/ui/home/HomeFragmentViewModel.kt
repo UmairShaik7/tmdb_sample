@@ -1,6 +1,6 @@
 package com.mvvm.tmdb.ui.home
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mvvm.data.repo.model.Result
@@ -10,13 +10,13 @@ import kotlinx.coroutines.launch
 
 class HomeFragmentViewModel(val repo: MovieRepository) : ViewModel() {
 
-    val latestMoviesResult = MutableLiveData<List<Result>>().apply { value = emptyList() }
-    val topMoviesResult = MutableLiveData<List<Result>>().apply { value = emptyList() }
+    var latestMoviesResult: LiveData<List<Result>>? = null
+    var topMoviesResult: LiveData<List<Result>>? = null
 
     fun getMovies(): Job = viewModelScope.launch {
-        latestMoviesResult.value = repo.getLatestMovies().value
+        latestMoviesResult = repo.getLatestMovies()
 
-        topMoviesResult.value = repo.getTopMovies().value
+        topMoviesResult = repo.getTopMovies()
 
     }
 

@@ -1,11 +1,14 @@
 package com.mvvm.tmdb.ui.home
 
 
+import android.content.ContentValues.TAG
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
 import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -40,6 +43,13 @@ class HomeFragment : Fragment() {
         setupLatestMoviesListAdapter()
         setupTopMoviesListAdapter()
         vm.getMovies()
+        setUpObserver()
+    }
+
+    private fun setUpObserver() {
+        vm.topMoviesResult?.observe(this, Observer {
+            Log.i(TAG,it.toString())
+        })
     }
 
     private fun setupTopMoviesListAdapter() {
@@ -51,6 +61,7 @@ class HomeFragment : Fragment() {
         latestMoviesListAdapter = MoviesAdapter(vm)
         viewDataBinding.latestMoviesList.adapter = latestMoviesListAdapter
     }
+
 
 
 }
