@@ -6,7 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
+import com.mvvm.tmdb.ui.home.adapter.GenreAdapter
 import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -18,13 +21,14 @@ class HomeFragment : Fragment() {
 
     private lateinit var viewDataBinding: FragmentHomeBinding
     // lazy inject MyViewModel
-    val vm: HomeFragmentViewModel by viewModel()
+    private val vm: HomeFragmentViewModel by viewModel()
     private lateinit var latestMoviesListAdapter: MoviesAdapter
     private lateinit var topMoviesListAdapter: MoviesAdapter
+    private lateinit var genreListAdapter: GenreAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         //inflater.inflate(R.layout.fragment_home, container, false)
@@ -39,7 +43,26 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupLatestMoviesListAdapter()
         setupTopMoviesListAdapter()
+        setupGenreListAdapter()
+        setupObservers()
         vm.getMovies()
+    }
+
+    private fun setupObservers() {
+
+        vm.genreLiveData.observe(this, Observer {
+            it?.also { getAllGenreCategory(it) }
+        })
+    }
+
+    private fun getAllGenreCategory(genreType: String) {
+        val action = HomeFragmentDirections.actionHomeFragmentToGenreFragment(genreType)
+        findNavController().navigate(action)
+    }
+
+    private fun setupGenreListAdapter() {
+        genreListAdapter = GenreAdapter(vm)
+        viewDataBinding.genreList.adapter = genreListAdapter
     }
 
     private fun setupTopMoviesListAdapter() {

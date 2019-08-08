@@ -21,7 +21,6 @@ import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.result.DBResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.util.*
 
 
 /**
@@ -36,39 +35,15 @@ class LocalDataSource(val db: DBService) {
                 db.database.resultDao().getMovies(AppConstants.MovieCategories.LATEST_MOVIES.type)
             )
         } catch (e: Exception) {
-            Error(e)
+            DBResult.Error(e)
         }
-    } as DBResult<List<Result>>
-
-    private fun getThisYearStart(): Date {
-
-        val cal = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        cal.set(Calendar.YEAR, year)
-        cal.set(Calendar.DAY_OF_YEAR, 1)
-        val start = cal.time
-        return start
-
-
-    }
-
-    private fun getThisYearEnd(): Date {
-        val cal = Calendar.getInstance()
-        val year = cal.get(Calendar.YEAR)
-        cal.set(Calendar.YEAR, year)
-        cal.set(Calendar.MONTH, 11) // 11 = december
-        cal.set(Calendar.DAY_OF_MONTH, 31) // new years eve
-
-        val end = cal.getTime()
-
-        return end
     }
 
 
     suspend fun insertTopMovies(results: MutableList<Result>?) = withContext(Dispatchers.IO) {
-        results?.let {
-            it.mapInPlace { it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type) }
-            //it.updateCategory(AppConstants.MovieCategories.TOP_MOVIES.type)
+        results?.let { list ->
+            list.mapInPlace { it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type) }
+            //list.updateCategory(AppConstants.MovieCategories.TOP_MOVIES.type)
             db.database.resultDao().saveMovies(results)
         }
     }
@@ -77,13 +52,13 @@ class LocalDataSource(val db: DBService) {
         return@withContext try {
             DBResult.Success(db.database.resultDao().getMovies(AppConstants.MovieCategories.TOP_MOVIES.type))
         } catch (e: Exception) {
-            Error(e)
+            DBResult.Error(e)
         }
-    } as DBResult<List<Result>>
+    }
 
-    suspend fun insertLatestMovies(results: MutableList<Result>) = withContext(Dispatchers.IO){
-        results?.let {
-            it.mapInPlace { it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type) }
+    suspend fun insertLatestMovies(results: MutableList<Result>) = withContext(Dispatchers.IO) {
+        results.let { list ->
+            list.mapInPlace { it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type) }
             db.database.resultDao().saveMovies(results)
         }
     }

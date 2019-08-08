@@ -38,3 +38,8 @@ fun setImage(imageView: ImageView, path: String) {
         .placeholder(R.drawable.ic_launcher_foreground)
         .into(imageView)
 }
+
+@BindingAdapter("app:genre_items")
+fun setGenreList(listView: RecyclerView, items: Array<AppConstants.Genre>){
+    (listView.adapter as GenreAdapter).submitList(items.asList())
+}

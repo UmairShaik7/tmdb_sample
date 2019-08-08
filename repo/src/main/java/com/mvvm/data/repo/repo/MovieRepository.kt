@@ -1,5 +1,6 @@
 package com.mvvm.data.repo.repo
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import com.mvvm.data.repo.db.LocalDataSource
 import com.mvvm.data.repo.model.Result
@@ -8,24 +9,20 @@ import com.mvvm.data.repo.result.DBResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class MovieRepositoryImpl(var dbSource: LocalDataSource, var remoteSource: RemoteNetworkSource) {
-
-    companion object
-
-    var TAG = this.javaClass.name
+class MovieRepository(
+    private var dbSource: LocalDataSource,
+    private var remoteSource: RemoteNetworkSource
+) {
 
     suspend fun getLatestMovies(): DBResult<List<Result>> {
 
         return withContext(Dispatchers.IO) {
-            val dbResult = fetchLatestMoviesFromRemoteOrLocal()
-
-            return@withContext dbResult
+            return@withContext fetchLatestMoviesFromRemoteOrLocal()
         }
     }
 
     private suspend fun fetchLatestMoviesFromRemoteOrLocal(): DBResult<List<Result>> {
-        val remoteMovies = dbSource.getLatestMovies()
-        when (remoteMovies) {
+        when (val remoteMovies = dbSource.getLatestMovies()) {
             is DBResult.Error -> Log.i(TAG, "Remote data source fetch failed")
             is DBResult.Success -> {
                 if (remoteMovies.data.isNotEmpty())
@@ -42,7 +39,6 @@ class MovieRepositoryImpl(var dbSource: LocalDataSource, var remoteSource: Remot
             }
         }
         return DBResult.Error(Exception("Error fetching from remote and local"))
-
     }
 
     suspend fun getTopMovies(): DBResult<List<Result>> {
@@ -52,8 +48,7 @@ class MovieRepositoryImpl(var dbSource: LocalDataSource, var remoteSource: Remot
     }
 
     private suspend fun fetchTopMovies(): DBResult<List<Result>> {
-        val remoteMovies = dbSource.getTopMovies()
-        when (remoteMovies) {
+        when (val remoteMovies = dbSource.getTopMovies()) {
             is DBResult.Error -> Log.i(TAG, "Remote data source fetch failed")
             is DBResult.Success -> {
                 if (remoteMovies.data.isNotEmpty())

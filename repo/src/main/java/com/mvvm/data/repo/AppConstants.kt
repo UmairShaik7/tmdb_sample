@@ -31,8 +31,8 @@ object AppConstants {
     }
 
     enum class MovieCategories(val type: Int) {
-        TOP_MOVIES(0),
-        LATEST_MOVIES(1),
-        OTHER(2)
+        OTHER(0),
+        TOP_MOVIES(1),
+        LATEST_MOVIES(2)
     }
 }
