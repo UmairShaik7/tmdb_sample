@@ -6,8 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
 import com.mvvm.tmdb.ui.home.adapter.GenreAdapter
 import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
@@ -50,8 +50,8 @@ class HomeFragment : Fragment() {
 
     private fun setupObservers() {
 
-        vm.genreLiveData.observe(this, Observer {
-            it?.also { getAllGenreCategory(it) }
+        vm.genreLiveData.observe(this, EventObserver {
+            it.also { getAllGenreCategory(it) }
         })
     }
 
