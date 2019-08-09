@@ -17,7 +17,7 @@ class GenreFragment : Fragment() {
          fun newInstance() = GenreFragment()
      }*/
 
-    private lateinit var gridAdapter: MoviesAdapter
+    private lateinit var gridAdapter: GenreGridAdapter
     private lateinit var viewBind: GenreFragmentBinding
     private val vm: GenreViewModel by viewModel()
     private val args: GenreFragmentArgs by navArgs()
@@ -37,12 +37,12 @@ class GenreFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        vm.getMoviesWithGenre(args.genreType)
         setupGridAdapter()
+        vm.getMoviesWithGenre(args.genreType)
     }
 
     private fun setupGridAdapter() {
-        gridAdapter = MoviesAdapter(vm)
-        viewBind.tasksList.adapter = gridAdapter
+         gridAdapter = GenreGridAdapter(vm)
+         viewBind.tasksList.adapter = gridAdapter
     }
 }

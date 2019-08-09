@@ -193,6 +193,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/genre/GenreGridAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/genre/GenreViewModel.kt">
           <value>
             <set />
@@ -259,6 +264,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/genre_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/genre_movie_item.xml">
           <value>
             <set />
           </value>
