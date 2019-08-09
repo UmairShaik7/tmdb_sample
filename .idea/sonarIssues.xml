@@ -23,6 +23,71 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/data/source/DefaultTasksRepository.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksListBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/res/layout/tasks_frag.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/HomeFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/EventsAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/FragmentOne.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/FragmentTwo.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/InnerDetailFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/models/CommunityResponse.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../here-android-sdk-examples/routing/app/src/main/java/com/here/android/example/routing/MapFragmentView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../koin-samples/samples/android-weatherapp/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/.gitignore">
           <value>
             <set />
@@ -68,6 +133,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/MovieListBindings.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/SampleTMDBApp.kt">
           <value>
             <set />
@@ -93,6 +163,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/BaseViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/HomeFragmentViewModel.kt">
           <value>
             <set />
@@ -104,6 +179,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/details/MovieDetailsViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/genre/GMoviesAdapter.kt">
           <value>
             <set />
           </value>
@@ -433,72 +513,12 @@
             <set />
           </value>
         </entry>
-        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/data/source/DefaultTasksRepository.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksActivity.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksListBindings.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/java/com/example/android/architecture/blueprints/todoapp/tasks/TasksViewModel.kt">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../android-architecture/app/src/main/res/layout/tasks_frag.xml">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/HomeFragment.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/EventsAdapter.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/FragmentOne.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/FragmentTwo.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/InnerDetailFragment.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../dubai_am/DubaiAM.AndroidDev.Repository/Dubai Properties/app/src/main/java/com/residents/dubaiassetmanagement/community_updates_events/models/CommunityResponse.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../here-android-sdk-examples/routing/app/src/main/java/com/here/android/example/routing/MapFragmentView.java">
-          <value>
-            <set />
-          </value>
-        </entry>
-        <entry key="$PROJECT_DIR$/../koin-samples/samples/android-weatherapp/app/build.gradle">
-          <value>
-            <set />
-          </value>
-        </entry>
         <entry key="/fragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="/fragment.kt">
           <value>
             <set />
           </value>

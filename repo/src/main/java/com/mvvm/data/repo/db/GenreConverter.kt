@@ -5,28 +5,24 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class GenreConverter {
-
+    val gson = Gson()
     @TypeConverter
-    fun fromGenre_ids(countryLang: List<Int>?): String? {
+    fun fromGenreIds(countryLang: List<Int>?): String? {
         if (countryLang == null) {
             return null
         }
-        val gson = Gson()
-        val type = object : TypeToken<List<Int>>() {
 
-        }.getType()
+        val type = object : TypeToken<List<Int>>() {}.type
         return gson.toJson(countryLang, type)
     }
 
     @TypeConverter
-    fun toGenre_ids(countryLangString: String?): List<Int>? {
+    fun toGenreIds(countryLangString: String?): List<Int>? {
         if (countryLangString == null) {
             return null
         }
-        val gson = Gson()
-        val type = object : TypeToken<List<Int>>() {
 
-        }.getType()
+        val type = object : TypeToken<List<Int>>() {}.type
         return gson.fromJson(countryLangString, type)
     }
 

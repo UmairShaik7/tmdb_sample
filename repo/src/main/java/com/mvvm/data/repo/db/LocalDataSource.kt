@@ -63,6 +63,15 @@ class LocalDataSource(val db: DBService) {
         }
     }
 
+    suspend fun getMoviesWithGenre(): DBResult<List<Result>> =
+        withContext(Dispatchers.IO) {
+            return@withContext try {
+
+                DBResult.Success(db.database.resultDao().getAll())
+            } catch (e: Exception) {
+                DBResult.Error(e)
+            }
+        }
 }
 
 

@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mvvm.tmdb.ui.home.adapter
+package com.mvvm.tmdb
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
@@ -21,7 +21,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.R
+import com.mvvm.tmdb.ui.home.adapter.GenreAdapter
+import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
 
 /**
  * [BindingAdapter]s for the [Movie]s list.

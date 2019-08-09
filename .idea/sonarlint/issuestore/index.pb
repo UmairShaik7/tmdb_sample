@@ -606,3 +606,5 @@ Y
 )app/src/main/res/layout/fragment_home.xml,3/1/31c5880846ef63ff1963efbe141ddfd56680bb19
 o
 ?app/src/main/java/com/mvvm/tmdb/ui/home/adapter/GenreAdapter.kt,c/1/c18975f89cdefa4c29ae1851371e4dab243aaba7
+X
+(app/src/main/java/com/mvvm/tmdb/Event.kt,6/d/6d04a09473dfc5e9f84c37f61dc5e292032c9d64

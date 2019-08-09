@@ -2,6 +2,7 @@ package com.mvvm.data.repo.repo
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.db.LocalDataSource
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.network.RemoteNetworkSource
@@ -22,17 +23,17 @@ class MovieRepository(
     }
 
     private suspend fun fetchLatestMoviesFromRemoteOrLocal(): DBResult<List<Result>> {
-        when (val remoteMovies = dbSource.getLatestMovies()) {
+        when (val localDBMovies = dbSource.getLatestMovies()) {
             is DBResult.Error -> Log.i(TAG, "Remote data source fetch failed")
             is DBResult.Success -> {
-                if (remoteMovies.data.isNotEmpty())
-                    return remoteMovies
+                if (localDBMovies.data.isNotEmpty())
+                    return localDBMovies
             }
             else -> throw IllegalStateException()
         }
-        val networkData = remoteSource.getLatestMovies()
-        if (networkData.isSuccessful) {
-            val results = networkData.body()?.results
+        val remoteNetworkData = remoteSource.getLatestMovies()
+        if (remoteNetworkData.isSuccessful) {
+            val results = remoteNetworkData.body()?.results
             results?.let {
                 dbSource.insertLatestMovies(results)
                 return dbSource.getLatestMovies()
@@ -41,24 +42,23 @@ class MovieRepository(
         return DBResult.Error(Exception("Error fetching from remote and local"))
     }
 
-    suspend fun getTopMovies(): DBResult<List<Result>> {
-        return withContext(Dispatchers.IO) {
-            return@withContext fetchTopMovies()
-        }
+    suspend fun getTopMovies(): DBResult<List<Result>> = withContext(Dispatchers.IO) {
+        return@withContext fetchTopMovies()
     }
 
+
     private suspend fun fetchTopMovies(): DBResult<List<Result>> {
-        when (val remoteMovies = dbSource.getTopMovies()) {
+        when (val localDBMovies = dbSource.getTopMovies()) {
             is DBResult.Error -> Log.i(TAG, "Remote data source fetch failed")
             is DBResult.Success -> {
-                if (remoteMovies.data.isNotEmpty())
-                    return remoteMovies
+                if (localDBMovies.data.isNotEmpty())
+                    return localDBMovies
             }
             else -> throw IllegalStateException()
         }
-        val networkData = remoteSource.getTopMovies()
-        if (networkData.isSuccessful) {
-            val results = networkData.body()?.results
+        val remoteNetworkData = remoteSource.getTopMovies()
+        if (remoteNetworkData.isSuccessful) {
+            val results = remoteNetworkData.body()?.results
             results?.let {
                 dbSource.insertTopMovies(results)
                 return dbSource.getTopMovies()
@@ -66,5 +66,24 @@ class MovieRepository(
         }
         return DBResult.Error(Exception("Error fetching from remote and local"))
     }
+
+    suspend fun getGenreMovies(genreType: String): DBResult<List<Result>> =
+        withContext(Dispatchers.IO) {
+            val code = AppConstants.Genre.valueOf(genreType).code.toInt()
+            when (val localDbResults = dbSource.getMoviesWithGenre()) {
+                is DBResult.Success -> {
+                    val item = localDbResults.data
+                    return@withContext DBResult.Success(item.filter { result ->
+                        result.genre_ids.contains(code)
+                    })
+
+                }
+                else -> { //TODO network query
+                    return@withContext localDbResults
+                }
+            }
+
+        }
+
 
 }

@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
+    @SuppressWarnings("kotlin:S125")
     override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
         R.id.action_search -> {
             //this is optional

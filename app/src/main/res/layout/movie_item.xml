@@ -25,7 +25,7 @@
 
         <variable
                 name="viewmodel"
-                type="com.mvvm.tmdb.ui.home.HomeFragmentViewModel"/>
+                type="com.mvvm.tmdb.ui.BaseViewModel"/>
     </data>
     <androidx.cardview.widget.CardView
             style="@style/movie_card_view"
@@ -55,7 +55,6 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:text="@{movie.original_title}"
-
                     tools:text="Movies Title"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

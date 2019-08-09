@@ -22,12 +22,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.databinding.MovieItemBinding
+import com.mvvm.tmdb.ui.BaseViewModel
 import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
 
 /**
  * Adapter for the Movies list. Has a reference to the [HomeFragmentViewModel] to send actions back to it.
  */
-class MoviesAdapter(private val viewModel: HomeFragmentViewModel) :
+class MoviesAdapter(private val viewModel: BaseViewModel) :
     ListAdapter<Result, MoviesAdapter.ViewHolder>(MoviesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -43,7 +44,7 @@ class MoviesAdapter(private val viewModel: HomeFragmentViewModel) :
     class ViewHolder private constructor(private val binding: MovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: HomeFragmentViewModel, item: Result) {
+        fun bind(viewModel: BaseViewModel, item: Result) {
 
             binding.viewmodel = viewModel
             binding.movie = item
