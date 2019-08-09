@@ -1,4 +1,4 @@
-package com.mvvm.tmdb.ui.home.adapter
+package com.mvvm.tmdb.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -36,7 +36,6 @@ class GenreAdapter(private val viewModel: HomeFragmentViewModel) :
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = GenreItemBinding.inflate(layoutInflater, parent, false)
-
                 return ViewHolder(binding)
             }
         }

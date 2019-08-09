@@ -1,14 +1,14 @@
 package com.mvvm.tmdb.ui.genre
 
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.repo.MovieRepository
 import com.mvvm.data.repo.result.DBResult
+import com.mvvm.tmdb.ui.BaseViewModel
 import kotlinx.coroutines.launch
 
-class GenreViewModel(private val repo: MovieRepository) : ViewModel() {
+class GenreViewModel(private val repo: MovieRepository) : BaseViewModel() {
 
 
     val localDBResults = MutableLiveData<List<Result>>().apply { value = emptyList() }

@@ -21,9 +21,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.ui.genre.GenreGridAdapter
-import com.mvvm.tmdb.ui.home.adapter.GenreAdapter
-import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
+import com.mvvm.tmdb.ui.adapter.GenreAdapter
+import com.mvvm.tmdb.ui.adapter.MoviesAdapter
 
 /**
  * [BindingAdapter]s for the [Movie]s list.
@@ -42,11 +41,7 @@ fun setImage(imageView: ImageView, path: String) {
 }
 
 @BindingAdapter("app:genre_items")
-fun setGenreList(listView: RecyclerView, items: Array<AppConstants.Genre>){
+fun setGenreList(listView: RecyclerView, items: Array<AppConstants.Genre>) {
     (listView.adapter as GenreAdapter).submitList(items.asList())
 }
 
-@BindingAdapter("app:genreResultItems")
-fun setGenreResult(listView: RecyclerView, items: List<Result>){
-    (listView.adapter as GenreGridAdapter).submitList(items)
-}

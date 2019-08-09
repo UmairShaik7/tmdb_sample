@@ -1,6 +1,5 @@
 package com.mvvm.tmdb.ui.details
 
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModel
 
-class MovieDetailsViewModel : ViewModel() {
-}
+class MovieDetailsViewModel : ViewModel()

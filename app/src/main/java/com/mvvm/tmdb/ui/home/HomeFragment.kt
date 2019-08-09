@@ -9,8 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
-import com.mvvm.tmdb.ui.home.adapter.GenreAdapter
-import com.mvvm.tmdb.ui.home.adapter.MoviesAdapter
+import com.mvvm.tmdb.ui.adapter.GenreAdapter
+import com.mvvm.tmdb.ui.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**

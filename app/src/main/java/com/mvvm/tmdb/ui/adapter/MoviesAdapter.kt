@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.mvvm.tmdb.ui.genre
+package com.mvvm.tmdb.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -21,15 +21,15 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.databinding.GenreMovieItemBinding
 import com.mvvm.tmdb.databinding.MovieItemBinding
+import com.mvvm.tmdb.ui.BaseViewModel
 import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
 
 /**
  * Adapter for the Movies list. Has a reference to the [HomeFragmentViewModel] to send actions back to it.
  */
-class GenreGridAdapter(private val viewModel: GenreViewModel) :
-    ListAdapter<Result, GenreGridAdapter.ViewHolder>(MoviesDiffCallback()) {
+class MoviesAdapter(private val viewModel: BaseViewModel) :
+    ListAdapter<Result, MoviesAdapter.ViewHolder>(MoviesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
@@ -41,10 +41,10 @@ class GenreGridAdapter(private val viewModel: GenreViewModel) :
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(private val binding: GenreMovieItemBinding) :
+    class ViewHolder private constructor(private val binding: MovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: GenreViewModel, item: Result) {
+        fun bind(viewModel: BaseViewModel, item: Result) {
 
             binding.viewmodel = viewModel
             binding.movie = item
@@ -54,7 +54,7 @@ class GenreGridAdapter(private val viewModel: GenreViewModel) :
         companion object {
             fun from(parent: ViewGroup): ViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = GenreMovieItemBinding.inflate(layoutInflater, parent, false)
+                val binding = MovieItemBinding.inflate(layoutInflater, parent, false)
 
                 return ViewHolder(binding)
             }

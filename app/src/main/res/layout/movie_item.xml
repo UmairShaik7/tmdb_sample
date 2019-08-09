@@ -25,7 +25,7 @@
 
         <variable
             name="viewmodel"
-            type="com.mvvm.tmdb.ui.home.HomeFragmentViewModel" />
+            type="com.mvvm.tmdb.ui.BaseViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView

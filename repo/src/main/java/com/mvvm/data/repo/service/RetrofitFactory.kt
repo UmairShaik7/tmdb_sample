@@ -1,12 +1,12 @@
 package com.mvvm.data.repo.service
 
 import com.mvvm.data.repo.AppConstants
+import com.squareup.moshi.Moshi
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
-import com.squareup.moshi.Moshi
 
 
 class RetrofitFactory {

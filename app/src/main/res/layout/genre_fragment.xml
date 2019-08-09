@@ -24,10 +24,11 @@
             android:id="@+id/tasks_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:numColumns="auto_fit"
-            app:genreResultItems="@{viewmodel.localDBResults}"
+            app:items="@{viewmodel.localDBResults}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
 
     </FrameLayout>
 </layout>
+
+    <!--app:genreResultItems="@{viewmodel.localDBResults}"-->

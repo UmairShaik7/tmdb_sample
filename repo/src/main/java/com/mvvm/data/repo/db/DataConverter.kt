@@ -1,7 +1,6 @@
 package com.mvvm.data.repo.db
 
 import androidx.room.TypeConverter
-import com.mvvm.data.repo.extentions.toDateLong
 import java.util.*
 
 class DateConverters {

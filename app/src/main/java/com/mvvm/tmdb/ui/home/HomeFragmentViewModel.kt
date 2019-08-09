@@ -3,17 +3,17 @@ package com.mvvm.tmdb.ui.home
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.repo.MovieRepository
 import com.mvvm.data.repo.result.DBResult
 import com.mvvm.tmdb.Event
+import com.mvvm.tmdb.ui.BaseViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HomeFragmentViewModel(private val repo: MovieRepository) : ViewModel() {
+class HomeFragmentViewModel(private val repo: MovieRepository) : BaseViewModel() {
 
     val latestMoviesResult = MutableLiveData<List<Result>>().apply { value = emptyList() }
     val topMoviesResult = MutableLiveData<List<Result>>().apply { value = emptyList() }
