@@ -7,23 +7,21 @@ import com.google.gson.reflect.TypeToken
 class GenreConverter {
     val gson = Gson()
     @TypeConverter
-    fun fromGenreIds(countryLang: List<Int>?): String? {
-        if (countryLang == null) {
-            return null
+    fun fromGenreIds(countryLang: List<Int?>): String? {
+        if (!countryLang.isNullOrEmpty()) {
+            val type = object : TypeToken<List<Int>>() {}.type
+            return gson.toJson(countryLang, type)
         }
-
-        val type = object : TypeToken<List<Int>>() {}.type
-        return gson.toJson(countryLang, type)
+        return null
     }
 
     @TypeConverter
     fun toGenreIds(countryLangString: String?): List<Int>? {
-        if (countryLangString == null) {
-            return null
+        if (!countryLangString.isNullOrEmpty()) {
+            val type = object : TypeToken<List<Int>>() {}.type
+            return gson.fromJson(countryLangString, type)
         }
-
-        val type = object : TypeToken<List<Int>>() {}.type
-        return gson.fromJson(countryLangString, type)
+        return null
     }
 
 }

@@ -32,9 +32,12 @@ class MoviesAdapter(private val viewModel: BaseViewModel) :
     ListAdapter<Result, MoviesAdapter.ViewHolder>(MoviesDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = getItem(position)
-
-        holder.bind(viewModel, item)
+       getItem(position).let {
+            with(holder) {
+                itemView.tag = it
+                bind(viewModel, it)
+            }
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
@@ -52,6 +53,10 @@ class HomeFragment : Fragment() {
 
         vm.genreLiveData.observe(this, EventObserver {
             it.also { getAllGenreCategory(it) }
+        })
+
+        vm.latestMoviesResult.observe(viewLifecycleOwner, Observer { it ->
+            if (!it.isNullOrEmpty()) latestMoviesListAdapter.submitList(it)
         })
     }
 

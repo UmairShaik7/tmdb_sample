@@ -36,7 +36,6 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/view_2"
             android:orientation="horizontal"
-            app:items="@{viewmodel.latestMoviesResult}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         <TextView

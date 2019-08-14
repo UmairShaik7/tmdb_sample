@@ -15,8 +15,8 @@
  */
 package com.mvvm.data.repo.db
 
+import androidx.lifecycle.LiveData
 import com.mvvm.data.repo.AppConstants
-import com.mvvm.data.repo.extentions.mapInPlace
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.result.DBResult
 import kotlinx.coroutines.Dispatchers
@@ -41,12 +41,9 @@ class LocalDataSource(val db: DBService) {
 
 
     suspend fun insertTopMovies(results: MutableList<Result>?) = withContext(Dispatchers.IO) {
-        results?.let { list ->
-            list.mapInPlace { it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type) }
-            //list.updateCategory(AppConstants.MovieCategories.TOP_MOVIES.type)
-            db.database.resultDao().saveMovies(results)
-        }
+        db.database.resultDao().saveMovies(results)
     }
+
 
     suspend fun getTopMovies(): DBResult<List<Result>> = withContext(Dispatchers.IO) {
         return@withContext try {
@@ -56,22 +53,22 @@ class LocalDataSource(val db: DBService) {
         }
     }
 
-    suspend fun insertLatestMovies(results: MutableList<Result>) = withContext(Dispatchers.IO) {
-        results.let { list ->
-            list.mapInPlace { it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type) }
-            db.database.resultDao().saveMovies(results)
-        }
+    suspend fun insertLatestMovies(results: List<Result>) = withContext(Dispatchers.IO) {
+        db.database.resultDao().saveMovies(results)
     }
 
     suspend fun getMoviesWithGenre(): DBResult<List<Result>> =
         withContext(Dispatchers.IO) {
             return@withContext try {
-
                 DBResult.Success(db.database.resultDao().getAll())
             } catch (e: Exception) {
                 DBResult.Error(e)
             }
         }
+
+    fun getLatestMovies2(): LiveData<List<Result>> =
+        db.database.resultDao().getMoviesLiveData(AppConstants.MovieCategories.LATEST_MOVIES.type)
+
 }
 
 

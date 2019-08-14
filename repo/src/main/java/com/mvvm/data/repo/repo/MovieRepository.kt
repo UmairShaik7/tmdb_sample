@@ -2,8 +2,10 @@ package com.mvvm.data.repo.repo
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.db.LocalDataSource
+import com.mvvm.data.repo.extentions.mapInPlace
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.network.RemoteNetworkSource
 import com.mvvm.data.repo.result.DBResult
@@ -35,7 +37,15 @@ class MovieRepository(
         if (remoteNetworkData.isSuccessful) {
             val results = remoteNetworkData.body()?.results
             results?.let {
+                /* dbSource.insertLatestMovies(results.filter { result -> !result.poster_path.isNullOrEmpty() }.also {
+                     results.mapInPlace {
+                         it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type)
+                     }
+                 })*/
+                results.filter { result -> !result.poster_path.isNullOrEmpty() }
+                results.mapInPlace { it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type) }
                 dbSource.insertLatestMovies(results)
+
                 return dbSource.getLatestMovies()
             }
         }
@@ -59,8 +69,12 @@ class MovieRepository(
         val remoteNetworkData = remoteSource.getTopMovies()
         if (remoteNetworkData.isSuccessful) {
             val results = remoteNetworkData.body()?.results
-            results?.let {
-                dbSource.insertTopMovies(results)
+            results?.let { list ->
+                list.mapInPlace {
+                    it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type)
+
+                }
+                dbSource.insertTopMovies(list)
                 return dbSource.getTopMovies()
             }
         }
@@ -74,7 +88,7 @@ class MovieRepository(
                 is DBResult.Success -> {
                     val item = localDbResults.data
                     return@withContext DBResult.Success(item.filter { result ->
-                        result.genre_ids.contains(code)
+                        result.genre_ids?.contains(code) ?: false
                     })
 
                 }
@@ -84,6 +98,9 @@ class MovieRepository(
             }
 
         }
+
+
+    fun getLatestMoviesLiveData(): LiveData<List<Result>> = dbSource.getLatestMovies2()
 
 
 }
