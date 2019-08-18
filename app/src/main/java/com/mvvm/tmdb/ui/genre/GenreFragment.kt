@@ -5,10 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.GenreFragmentBinding
-import com.mvvm.tmdb.ui.adapter.MoviesAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreFragment : Fragment() {
@@ -17,7 +17,7 @@ class GenreFragment : Fragment() {
          fun newInstance() = GenreFragment()
      }*/
 
-    private lateinit var gridAdapter: MoviesAdapter
+    private lateinit var gridAdapter: ReposAdapter
     private lateinit var viewBind: GenreFragmentBinding
     private val vm: GenreViewModel by viewModel()
     private val args: GenreFragmentArgs by navArgs()
@@ -38,11 +38,20 @@ class GenreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupGridAdapter()
-        vm.getMoviesWithGenre(args.genreType)
+        vm.setGenre(args.genreType)
+        setUpObservables()
+    }
+
+    private fun setUpObservables() {
+
+        vm.repos.observe(viewLifecycleOwner, Observer {
+            gridAdapter.submitList(it)
+            viewBind.tasksList.scrollToPosition(0)
+        })
     }
 
     private fun setupGridAdapter() {
-        gridAdapter = MoviesAdapter(vm)
+        gridAdapter = ReposAdapter(vm)
         viewBind.tasksList.adapter = gridAdapter
     }
 }

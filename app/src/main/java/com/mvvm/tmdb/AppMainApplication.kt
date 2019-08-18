@@ -2,7 +2,6 @@ package com.mvvm.tmdb
 
 import android.app.Application
 import com.mvvm.data.repoModule
-import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 

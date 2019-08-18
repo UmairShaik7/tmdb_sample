@@ -1,1 +1,1 @@
-include ':app', ':datamodule', ':repository', ':repo'
+include ':app', ':repo'

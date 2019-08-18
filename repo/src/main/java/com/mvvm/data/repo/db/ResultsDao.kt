@@ -1,6 +1,7 @@
 package com.mvvm.data.repo.db
 
 import androidx.lifecycle.LiveData
+import androidx.paging.DataSource
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -28,4 +29,8 @@ interface ResultsDao {
 
     @Query("SELECT * FROM result")
     fun getAllMovies(): LiveData<List<Result>>
+
+    @Query("SELECT * FROM result where genre_ids like :item ORDER BY original_title ASC")
+    fun getGenra(item: String): DataSource.Factory<Int, Result>
+
 }

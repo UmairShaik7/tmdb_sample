@@ -15,13 +15,10 @@
  */
 package com.mvvm.tmdb.ui.adapter
 
-import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.databinding.MovieItemBinding
 import com.mvvm.tmdb.ui.BaseViewModel
 import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
 
@@ -29,10 +26,10 @@ import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
  * Adapter for the Movies list. Has a reference to the [HomeFragmentViewModel] to send actions back to it.
  */
 class MoviesAdapter(private val viewModel: BaseViewModel) :
-    ListAdapter<Result, MoviesAdapter.ViewHolder>(MoviesDiffCallback()) {
+    ListAdapter<Result, MovieViewHolder>(MoviesDiffCallback()) {
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-       getItem(position).let {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+        getItem(position).let {
             with(holder) {
                 itemView.tag = it
                 bind(viewModel, it)
@@ -40,29 +37,11 @@ class MoviesAdapter(private val viewModel: BaseViewModel) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
+        return MovieViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(private val binding: MovieItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(viewModel: BaseViewModel, item: Result) {
-
-            binding.viewmodel = viewModel
-            binding.movie = item
-            binding.executePendingBindings()
-        }
-
-        companion object {
-            fun from(parent: ViewGroup): ViewHolder {
-                val layoutInflater = LayoutInflater.from(parent.context)
-                val binding = MovieItemBinding.inflate(layoutInflater, parent, false)
-
-                return ViewHolder(binding)
-            }
-        }
-    }
 }
 
 /**

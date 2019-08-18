@@ -3,6 +3,8 @@ package com.mvvm.data.repo.repo
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.db.LocalDataSource
 import com.mvvm.data.repo.extentions.mapInPlace
@@ -37,11 +39,6 @@ class MovieRepository(
         if (remoteNetworkData.isSuccessful) {
             val results = remoteNetworkData.body()?.results
             results?.let {
-                /* dbSource.insertLatestMovies(results.filter { result -> !result.poster_path.isNullOrEmpty() }.also {
-                     results.mapInPlace {
-                         it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type)
-                     }
-                 })*/
                 results.filter { result -> !result.poster_path.isNullOrEmpty() }
                 results.mapInPlace { it.copy(category = AppConstants.MovieCategories.LATEST_MOVIES.type) }
                 dbSource.insertLatestMovies(results)
@@ -84,7 +81,7 @@ class MovieRepository(
     suspend fun getGenreMovies(genreType: String): DBResult<List<Result>> =
         withContext(Dispatchers.IO) {
             val code = AppConstants.Genre.valueOf(genreType).code.toInt()
-            when (val localDbResults = dbSource.getMoviesWithGenre()) {
+            when (val localDbResults = dbSource.getAllMovies()) {
                 is DBResult.Success -> {
                     val item = localDbResults.data
                     return@withContext DBResult.Success(item.filter { result ->
@@ -92,7 +89,7 @@ class MovieRepository(
                     })
 
                 }
-                else -> { //TODO network query
+                else -> {
                     return@withContext localDbResults
                 }
             }
@@ -100,7 +97,30 @@ class MovieRepository(
         }
 
 
-    fun getLatestMoviesLiveData(): LiveData<List<Result>> = dbSource.getLatestMovies2()
+    fun getLatestMoviesLiveData(): LiveData<List<Result>> = dbSource.getLatestMoviesLiveData()
+
+    fun getGenreMoviesLiveData(it: String): LiveData<PagedList<Result>> {
+        val item = AppConstants.Genre.valueOf(it).code
 
 
+        val dataSourceFactory = dbSource.getGenreMovies("%$item%")
+
+        // every new query creates a new BoundaryCallback
+        // The BoundaryCallback will observe when the user reaches to the edges of
+        // the list and update the database with extra data
+        val boundaryCallback = RepoBoundaryCallback(item, dbSource, remoteSource)
+
+        // Get the paged list
+        val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
+            .setBoundaryCallback(boundaryCallback)
+            .build()
+
+        // Get the network errors exposed by the boundary callback
+        return data
+
+    }
+
+    companion object {
+        private const val DATABASE_PAGE_SIZE = 10
+    }
 }

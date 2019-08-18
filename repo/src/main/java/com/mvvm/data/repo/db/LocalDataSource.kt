@@ -57,7 +57,7 @@ class LocalDataSource(val db: DBService) {
         db.database.resultDao().saveMovies(results)
     }
 
-    suspend fun getMoviesWithGenre(): DBResult<List<Result>> =
+    suspend fun getAllMovies(): DBResult<List<Result>> =
         withContext(Dispatchers.IO) {
             return@withContext try {
                 DBResult.Success(db.database.resultDao().getAll())
@@ -66,8 +66,12 @@ class LocalDataSource(val db: DBService) {
             }
         }
 
-    fun getLatestMovies2(): LiveData<List<Result>> =
+    fun getLatestMoviesLiveData(): LiveData<List<Result>> =
         db.database.resultDao().getMoviesLiveData(AppConstants.MovieCategories.LATEST_MOVIES.type)
+
+
+    fun getGenreMovies(it: String) = db.database.resultDao().getGenra(it)
+
 
 }
 

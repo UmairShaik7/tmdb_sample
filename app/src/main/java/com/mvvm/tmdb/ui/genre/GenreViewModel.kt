@@ -1,25 +1,29 @@
 package com.mvvm.tmdb.ui.genre
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.Transformations
+import androidx.paging.PagedList
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.repo.MovieRepository
-import com.mvvm.data.repo.result.DBResult
 import com.mvvm.tmdb.ui.BaseViewModel
-import kotlinx.coroutines.launch
+
 
 class GenreViewModel(private val repo: MovieRepository) : BaseViewModel() {
-
-
-    val localDBResults = MutableLiveData<List<Result>>().apply { value = emptyList() }
-
-    fun getMoviesWithGenre(genreType: String) = viewModelScope.launch {
-        val results = repo.getGenreMovies(genreType)
-        if (results is DBResult.Success) {
-            localDBResults.value = results.data
-        }
-
+    fun setGenre(genreType: String) {
+        queryLiveData.postValue(genreType)
     }
 
 
+    private val queryLiveData = MutableLiveData<String>()
+    private val repoResult: LiveData<LiveData<PagedList<Result>>> =
+        Transformations.map(queryLiveData) {
+            repo.getGenreMoviesLiveData(it)
+        }
+
+    val repos: LiveData<PagedList<Result>> = Transformations.switchMap(repoResult) {
+        it
+    }
 }
+
+
