@@ -21,10 +21,10 @@ class HomeFragmentViewModel(private val repo: MovieRepository) : BaseViewModel()
     val genreLiveData = MutableLiveData<Event<String>>()
 
     fun getMovies(): Job = viewModelScope.launch {
-        val latestMovieResults = repo.getLatestMovies()
+       /* val latestMovieResults = repo.getLatestMovies()
         if (latestMovieResults is DBResult.Success) {
             //latestMoviesResult.value = latestMovieResults.data
-        }
+        }*/
 
         val topMovieResults: DBResult<List<Result>> = repo.getTopMovies()
         if (topMovieResults is DBResult.Success) {

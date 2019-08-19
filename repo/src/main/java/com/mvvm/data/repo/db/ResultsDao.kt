@@ -22,7 +22,7 @@ interface ResultsDao {
 
 
     @Query("SELECT * FROM result WHERE category like :category")
-    fun getMoviesLiveData(category: Int): LiveData<List<Result>>
+    fun getMoviesLiveData(category: Int): List<Result>
 
     @Query("SELECT * FROM result Where genre_ids like :genreType")
     fun getMoviesWithGenre(genreType: Int): List<Result>

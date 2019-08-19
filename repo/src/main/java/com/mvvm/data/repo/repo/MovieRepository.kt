@@ -3,6 +3,7 @@ package com.mvvm.data.repo.repo
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.liveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
 import com.mvvm.data.repo.AppConstants
@@ -20,7 +21,6 @@ class MovieRepository(
 ) {
 
     suspend fun getLatestMovies(): DBResult<List<Result>> {
-
         return withContext(Dispatchers.IO) {
             return@withContext fetchLatestMoviesFromRemoteOrLocal()
         }
@@ -97,7 +97,12 @@ class MovieRepository(
         }
 
 
-    fun getLatestMoviesLiveData(): LiveData<List<Result>> = dbSource.getLatestMoviesLiveData()
+    fun getLatestMoviesLiveData(): LiveData<List<Result>> = liveData {
+        when (val data = getLatestMovies()) {
+            is DBResult.Success -> emit(data.data)
+        }
+
+    }
 
     fun getGenreMoviesLiveData(it: String): LiveData<PagedList<Result>> {
         val item = AppConstants.Genre.valueOf(it).code
@@ -111,7 +116,7 @@ class MovieRepository(
         val boundaryCallback = RepoBoundaryCallback(item, dbSource, remoteSource)
 
         // Get the paged list
-        val data = LivePagedListBuilder(dataSourceFactory, DATABASE_PAGE_SIZE)
+        val data = LivePagedListBuilder(dataSourceFactory, AppConstants.DATABASE_PAGE_SIZE)
             .setBoundaryCallback(boundaryCallback)
             .build()
 
@@ -120,7 +125,5 @@ class MovieRepository(
 
     }
 
-    companion object {
-        private const val DATABASE_PAGE_SIZE = 10
-    }
+
 }

@@ -3,6 +3,8 @@ package com.mvvm.data.repo
 import com.mvvm.data.BuildConfig
 
 object AppConstants {
+
+    const val DATABASE_PAGE_SIZE = 10
     const val DEFAULT_LANGUAGE = "en-US"
     const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
     const val IMAGE_PATH = "https://image.tmdb.org/t/p/w154"
