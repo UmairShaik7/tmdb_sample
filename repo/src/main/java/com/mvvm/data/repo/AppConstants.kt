@@ -1,6 +1,8 @@
 package com.mvvm.data.repo
 
+import androidx.recyclerview.widget.DiffUtil
 import com.mvvm.data.BuildConfig
+import com.mvvm.data.repo.model.Result
 
 object AppConstants {
 
@@ -37,5 +39,20 @@ object AppConstants {
         OTHER(0),
         TOP_MOVIES(1),
         LATEST_MOVIES(2)
+    }
+
+
+    /**
+     * Callback for calculating the diff between two non-null latestMoviesResult in a list.
+     *
+     * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
+     * list that's been passed to `submitList`.
+     */
+    val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
+            oldItem.id == newItem.id
+
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
+            oldItem == newItem
     }
 }

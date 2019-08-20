@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.GenreFragmentBinding
+import com.mvvm.tmdb.ui.adapter.GeneraPagedAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreFragment : Fragment() {
@@ -17,7 +18,7 @@ class GenreFragment : Fragment() {
          fun newInstance() = GenreFragment()
      }*/
 
-    private lateinit var gridAdapter: ReposAdapter
+    private lateinit var gridAdapter: GeneraPagedAdapter
     private lateinit var viewBind: GenreFragmentBinding
     private val vm: GenreViewModel by viewModel()
     private val args: GenreFragmentArgs by navArgs()
@@ -51,7 +52,7 @@ class GenreFragment : Fragment() {
     }
 
     private fun setupGridAdapter() {
-        gridAdapter = ReposAdapter(vm)
+        gridAdapter = GeneraPagedAdapter(vm)
         viewBind.tasksList.adapter = gridAdapter
     }
 }

@@ -1,12 +1,11 @@
 package com.mvvm.data.repo.repo
 
 import android.util.Log
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagedList
 import com.mvvm.data.repo.db.LocalDataSource
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.network.RemoteNetworkSource
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -40,11 +39,11 @@ class RepoBoundaryCallback(
 
     private fun requestAndSaveData(query: String) {
         if (isRequestInProgress) return
-        GlobalScope.launch {
+        GlobalScope.launch(Dispatchers.IO) {
 
 
             isRequestInProgress = true
-            val data = remoteSource.network.getGenra(query, lastRequestedPage)
+            val data = remoteSource.getGenra(query, lastRequestedPage)
             lastRequestedPage++
             if (data.isSuccessful) {
                 dbSource.insertTopMovies(data.body()?.results)

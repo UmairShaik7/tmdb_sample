@@ -20,7 +20,7 @@ class MovieRepository(
     private var remoteSource: RemoteNetworkSource
 ) {
 
-    suspend fun getLatestMovies(): DBResult<List<Result>> {
+    private suspend fun getLatestMovies(): DBResult<List<Result>> {
         return withContext(Dispatchers.IO) {
             return@withContext fetchLatestMoviesFromRemoteOrLocal()
         }
@@ -78,23 +78,21 @@ class MovieRepository(
         return DBResult.Error(Exception("Error fetching from remote and local"))
     }
 
-    suspend fun getGenreMovies(genreType: String): DBResult<List<Result>> =
-        withContext(Dispatchers.IO) {
-            val code = AppConstants.Genre.valueOf(genreType).code.toInt()
-            when (val localDbResults = dbSource.getAllMovies()) {
-                is DBResult.Success -> {
-                    val item = localDbResults.data
-                    return@withContext DBResult.Success(item.filter { result ->
-                        result.genre_ids?.contains(code) ?: false
-                    })
+    suspend fun getGenreMovies(genreType: String) = withContext(Dispatchers.IO) {
+        val code = AppConstants.Genre.valueOf(genreType).code.toInt()
+        when (val localDbResults = dbSource.getAllMovies()) {
+            is DBResult.Success -> {
+                val item = localDbResults.data
+                return@withContext DBResult.Success(item.filter { result ->
+                    result.genre_ids?.contains(code) ?: false
+                })
 
-                }
-                else -> {
-                    return@withContext localDbResults
-                }
             }
-
+            else -> {
+                return@withContext localDbResults
+            }
         }
+    }
 
 
     fun getLatestMoviesLiveData(): LiveData<List<Result>> = liveData {
