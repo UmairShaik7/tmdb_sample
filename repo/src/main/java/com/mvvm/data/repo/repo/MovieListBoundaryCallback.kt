@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
-class RepoBoundaryCallback(
+class MovieListBoundaryCallback(
     private val query: String,
     private val dbSource: LocalDataSource,
     private var remoteSource: RemoteNetworkSource
@@ -25,15 +25,13 @@ class RepoBoundaryCallback(
      * Database returned 0 items. We should query the backend for more items.
      */
     override fun onZeroItemsLoaded() {
-        Log.d("RepoBoundaryCallback", "onZeroItemsLoaded")
-        requestAndSaveData(query)
+       requestAndSaveData(query)
     }
 
     /**
      * When all items in the database were loaded, we need to query the backend for more items.
      */
     override fun onItemAtEndLoaded(itemAtEnd: Result) {
-        Log.d("RepoBoundaryCallback", "onItemAtEndLoaded")
         requestAndSaveData(query)
     }
 

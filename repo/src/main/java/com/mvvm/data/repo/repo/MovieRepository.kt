@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.db.LocalDataSource
 import com.mvvm.data.repo.extentions.mapInPlace
@@ -111,7 +112,7 @@ class MovieRepository(
         // every new query creates a new BoundaryCallback
         // The BoundaryCallback will observe when the user reaches to the edges of
         // the list and update the database with extra data
-        val boundaryCallback = RepoBoundaryCallback(item, dbSource, remoteSource)
+        val boundaryCallback = MovieListBoundaryCallback(item, dbSource, remoteSource)
 
         // Get the paged list
         val data = LivePagedListBuilder(dataSourceFactory, AppConstants.DATABASE_PAGE_SIZE)
@@ -120,6 +121,13 @@ class MovieRepository(
 
         // Get the network errors exposed by the boundary callback
         return data
+
+    }
+
+    fun searchMovie(query: String): LiveData<PagedList<Result>> {
+        val sourceFactory = MovieDataSourceFactory(remoteSource, query)
+
+        return sourceFactory.toLiveData(20)
 
     }
 

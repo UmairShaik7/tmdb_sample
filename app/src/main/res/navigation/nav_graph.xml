@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_homeFragment_to_genreFragment"
             app:destination="@id/genreFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchableFragment"
+            app:destination="@id/searchableFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
@@ -37,4 +40,9 @@
             android:id="@+id/action_genreFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/searchableFragment"
+        android:name="com.mvvm.tmdb.ui.search.SearchableFragment"
+        android:label="searchable_fragment"
+        tools:layout="@layout/searchable_fragment" />
 </navigation>

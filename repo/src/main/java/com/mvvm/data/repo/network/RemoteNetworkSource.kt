@@ -20,4 +20,8 @@ class RemoteNetworkSource(val service: Services) {
         return network.getGenra(query,lastRequestedPage)
     }
 
+    suspend fun getSearchResults(searchQuery: String, lastPageResult: Int): Response<MoviesResponse> {
+        return network.getSearchResults(searchQuery,lastPageResult)
+    }
+
 }

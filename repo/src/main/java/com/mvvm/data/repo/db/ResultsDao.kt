@@ -30,7 +30,7 @@ interface ResultsDao {
     @Query("SELECT * FROM result")
     fun getAllMovies(): LiveData<List<Result>>
 
-    @Query("SELECT * FROM result where genre_ids like :item ORDER BY original_title ASC")
+    @Query("SELECT * FROM result where genre_ids like :item")
     fun getGenra(item: String): DataSource.Factory<Int, Result>
 
 }

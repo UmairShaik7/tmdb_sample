@@ -20,9 +20,9 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
             <meta-data android:name="android.app.default_searchable"
-                       android:value=".search.SearchableActivity"/>
+                       android:value="com.mvvm.tmdb.ui.search.SearchableActivity"/>
         </activity>
-        <activity android:name=".search.SearchableActivity"
+        <activity android:name="com.mvvm.tmdb.ui.search.SearchableFragment"
                   android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH"/>
@@ -30,8 +30,8 @@
             <meta-data android:name="android.app.searchable"
                        android:resource="@xml/searchable"/>
         </activity>
-        <provider android:name=".search.SuggestionProvider"
-                  android:authorities="com.mvvm.tmdb.search.SuggestionProvider" />
+        <provider android:name="com.mvvm.tmdb.ui.search.SuggestionProvider"
+                  android:authorities="com.mvvm.tmdb.ui.search.SuggestionProvider" />
     </application>
 
 </manifest>

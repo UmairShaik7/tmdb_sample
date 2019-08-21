@@ -2,32 +2,29 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.genre.GenreFragment">
+    tools:context=".ui.search.SearchableFragment">
 
     <data>
 
         <import type="android.view.View" />
 
-        <import type="androidx.core.content.ContextCompat" />
-
         <variable
             name="viewmodel"
-            type="com.mvvm.tmdb.ui.genre.GenreViewModel" />
+            type="com.mvvm.tmdb.ui.search.SearchViewModel" />
 
     </data>
 
-    <FrameLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/tasks_list"
+            android:id="@+id/search_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scrollbars="vertical"
+            android:layout_margin="@dimen/view_2"
+            android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
-    </FrameLayout>
+    </LinearLayout>
 </layout>
-
-    <!--app:genreResultItems="@{viewmodel.localDBResults}"-->

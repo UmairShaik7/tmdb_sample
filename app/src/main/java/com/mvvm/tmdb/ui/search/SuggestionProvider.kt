@@ -1,14 +1,17 @@
-package com.mvvm.tmdb.search
+package com.mvvm.tmdb.ui.search
 
 import android.content.SearchRecentSuggestionsProvider
 
 class SuggestionProvider : SearchRecentSuggestionsProvider() {
     init {
-        setupSuggestions(AUTHORITY, MODE)
+        setupSuggestions(
+            AUTHORITY,
+            MODE
+        )
     }
 
     companion object {
-        const val AUTHORITY = "com.mvvm.tmdb.search.SuggestionProvider"
+        const val AUTHORITY = "com.mvvm.tmdb.ui.search.SuggestionProvider"
         const val MODE: Int = SearchRecentSuggestionsProvider.DATABASE_MODE_QUERIES
     }
 }

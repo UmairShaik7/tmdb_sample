@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
+import androidx.paging.PagedList
+import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.GenreFragmentBinding
 import com.mvvm.tmdb.ui.adapter.GeneraPagedAdapter
@@ -45,9 +47,9 @@ class GenreFragment : Fragment() {
 
     private fun setUpObservables() {
 
-        vm.repos.observe(viewLifecycleOwner, Observer {
+        vm.repos.observe(viewLifecycleOwner, Observer<PagedList<Result>> {
             gridAdapter.submitList(it)
-            viewBind.tasksList.scrollToPosition(0)
+
         })
     }
 
