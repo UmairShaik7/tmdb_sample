@@ -47,7 +47,7 @@ class RetrofitFactory {
         internal val dateFormat: DateFormat
 
         init {
-            dateFormat = SimpleDateFormat(AppConstants.YYYYMMDD)
+            dateFormat = SimpleDateFormat(AppConstants.SERVER_DATE_FORMATE)
             dateFormat.setTimeZone(TimeZone.getTimeZone("GMT"))
         }
 

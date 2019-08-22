@@ -24,6 +24,8 @@
     </style>
 
     <style name="movie_titles">
+
+        <item name="android:maxWidth">120sp</item>
         <item name="android:textSize">@dimen/text_15</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>

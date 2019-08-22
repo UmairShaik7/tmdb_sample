@@ -14,8 +14,6 @@ class SearchViewModel(private val repo: MovieRepository) : BaseViewModel() {
         if (queryValue.value != query && query.isNotBlank()) {
             queryValue.value = query
         }
-
     }
-
 
 }

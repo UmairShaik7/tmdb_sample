@@ -2,11 +2,9 @@ package com.mvvm.tmdb.ui.adapter
 
 import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
-import androidx.recyclerview.widget.DiffUtil
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.ui.BaseViewModel
-import com.mvvm.tmdb.ui.adapter.MovieViewHolder
 
 
 class GeneraPagedAdapter(private val viewModel: BaseViewModel) :

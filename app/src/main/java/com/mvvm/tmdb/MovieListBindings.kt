@@ -16,13 +16,16 @@
 package com.mvvm.tmdb
 
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mvvm.data.repo.AppConstants
+import com.mvvm.data.repo.extentions.getYear
 import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.ui.adapter.GenreAdapter
 import com.mvvm.tmdb.ui.adapter.MoviesAdapter
+
 
 /**
  * [BindingAdapter]s for the [Movie]s list.
@@ -35,9 +38,9 @@ fun setItems(listView: RecyclerView, items: List<Result>) {
 @BindingAdapter("app:setImage")
 fun setImage(imageView: ImageView, path: String) {
     Glide.with(imageView.context)
-        .load("${AppConstants.IMAGE_PATH}$path")
-        .placeholder(R.drawable.ic_launcher_foreground)
-        .into(imageView)
+            .load("${AppConstants.IMAGE_PATH}$path")
+            .placeholder(R.drawable.ic_launcher_foreground)
+            .into(imageView)
 }
 
 @BindingAdapter("app:genre_items")
@@ -45,3 +48,7 @@ fun setGenreList(listView: RecyclerView, items: Array<AppConstants.Genre>) {
     (listView.adapter as GenreAdapter).submitList(items.asList())
 }
 
+@BindingAdapter("bindServerDate")
+fun bindServerDate(textView: TextView, date: String) {
+    if (date.isNotBlank()) textView.text = date.getYear()
+}
