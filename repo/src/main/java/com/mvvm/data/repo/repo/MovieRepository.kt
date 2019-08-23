@@ -14,11 +14,12 @@ import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.network.RemoteNetworkSource
 import com.mvvm.data.repo.result.DBResult
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class MovieRepository(
-    private var dbSource: LocalDataSource,
-    private var remoteSource: RemoteNetworkSource
+        private var dbSource: LocalDataSource,
+        private var remoteSource: RemoteNetworkSource
 ) {
 
     private suspend fun getLatestMovies(): DBResult<List<Result>> {
@@ -116,8 +117,8 @@ class MovieRepository(
 
         // Get the paged list
         val data = LivePagedListBuilder(dataSourceFactory, AppConstants.DATABASE_PAGE_SIZE)
-            .setBoundaryCallback(boundaryCallback)
-            .build()
+                .setBoundaryCallback(boundaryCallback)
+                .build()
 
         // Get the network errors exposed by the boundary callback
         return data
@@ -131,5 +132,12 @@ class MovieRepository(
 
     }
 
+    fun getMovieDetails(movieId: Int) = liveData {
+        emit(dbSource.getMovie(movieId).data)
+    }
+
+    fun insertMovie(filter: List<Result>) {
+       runBlocking(Dispatchers.IO) {dbSource.insertTopMovies(filter)}
+    }
 
 }

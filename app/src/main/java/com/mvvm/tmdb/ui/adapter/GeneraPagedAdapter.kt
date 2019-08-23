@@ -4,7 +4,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.ui.BaseViewModel
+import com.mvvm.tmdb.ui.base.BaseViewModel
 
 
 class GeneraPagedAdapter(private val viewModel: BaseViewModel) :

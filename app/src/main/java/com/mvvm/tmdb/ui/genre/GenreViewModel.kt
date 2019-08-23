@@ -2,15 +2,14 @@ package com.mvvm.tmdb.ui.genre
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.map
 import androidx.lifecycle.switchMap
 import androidx.paging.PagedList
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.repo.MovieRepository
-import com.mvvm.tmdb.ui.BaseViewModel
+import com.mvvm.tmdb.ui.base.BaseViewModel
 
 
-class GenreViewModel(private val repo: MovieRepository) : BaseViewModel() {
+class GenreViewModel(private val repo: MovieRepository) : BaseViewModel(repo) {
 
     private val queryLiveData = MutableLiveData<String>()
    /* private val repoResult: LiveData<LiveData<PagedList<Result>>> = queryLiveData.map {

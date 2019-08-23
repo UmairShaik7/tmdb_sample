@@ -7,11 +7,11 @@ import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.repo.MovieRepository
 import com.mvvm.data.repo.result.DBResult
 import com.mvvm.tmdb.Event
-import com.mvvm.tmdb.ui.BaseViewModel
+import com.mvvm.tmdb.ui.base.BaseViewModel
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-class HomeFragmentViewModel(private val repo: MovieRepository) : BaseViewModel() {
+class HomeFragmentViewModel(private val repo: MovieRepository) : BaseViewModel(repo) {
 
     val latestMoviesResult = repo.getLatestMoviesLiveData()
     val topMoviesResult = MutableLiveData<List<Result>>().apply { value = emptyList() }
@@ -21,16 +21,10 @@ class HomeFragmentViewModel(private val repo: MovieRepository) : BaseViewModel()
     val genreLiveData = MutableLiveData<Event<String>>()
 
     fun getMovies(): Job = viewModelScope.launch {
-       /* val latestMovieResults = repo.getLatestMovies()
-        if (latestMovieResults is DBResult.Success) {
-            //latestMoviesResult.value = latestMovieResults.data
-        }*/
-
         val topMovieResults: DBResult<List<Result>> = repo.getTopMovies()
         if (topMovieResults is DBResult.Success) {
             topMoviesResult.value = topMovieResults.data
         }
-
     }
 
     fun genreOnclick(name: String) {

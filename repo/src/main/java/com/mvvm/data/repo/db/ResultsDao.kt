@@ -33,4 +33,7 @@ interface ResultsDao {
     @Query("SELECT * FROM result where genre_ids like :item")
     fun getGenra(item: String): DataSource.Factory<Int, Result>
 
+    @Query("SELECT * FROM result where id is :movieId")
+    fun getMovie(movieId: Int): Result
+
 }

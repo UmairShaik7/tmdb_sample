@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.databinding.MovieItemBinding
-import com.mvvm.tmdb.ui.BaseViewModel
+import com.mvvm.tmdb.ui.base.BaseViewModel
 
 class MovieViewHolder private constructor(private val binding: MovieItemBinding) :
     RecyclerView.ViewHolder(binding.root) {

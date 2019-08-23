@@ -1,5 +1,6 @@
 package com.mvvm.tmdb
 
+import com.mvvm.tmdb.ui.details.MovieDetailsViewModel
 import com.mvvm.tmdb.ui.search.SearchViewModel
 import com.mvvm.tmdb.ui.genre.GenreViewModel
 import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
@@ -12,5 +13,7 @@ val appModule = module {
 
     viewModel { GenreViewModel(get()) }
     viewModel { SearchViewModel(get()) }
+
+    viewModel { MovieDetailsViewModel(get()) }
 }
 

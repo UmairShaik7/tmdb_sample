@@ -6,7 +6,8 @@
     <androidx.cardview.widget.CardView
         style="@style/movie_card_view"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:onClick="@{() -> viewmodel.movieOnclick(movie.id)}">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -97,6 +98,6 @@
 
         <variable
             name="viewmodel"
-            type="com.mvvm.tmdb.ui.BaseViewModel" />
+            type="com.mvvm.tmdb.ui.base.BaseViewModel" />
     </data>
 </layout>

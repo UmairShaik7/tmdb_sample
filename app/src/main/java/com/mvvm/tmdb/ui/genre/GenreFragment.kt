@@ -6,15 +6,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.paging.PagedList
 import com.mvvm.data.repo.model.Result
+import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.GenreFragmentBinding
 import com.mvvm.tmdb.ui.adapter.GeneraPagedAdapter
+import com.mvvm.tmdb.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class GenreFragment : Fragment() {
+class GenreFragment : BaseFragment() {
 
     /* companion object {
          fun newInstance() = GenreFragment()
@@ -51,6 +54,15 @@ class GenreFragment : Fragment() {
             gridAdapter.submitList(it)
 
         })
+
+        vm.itemClick.observe(viewLifecycleOwner, EventObserver {
+            getMovieDetails(it)
+        })
+    }
+
+     override fun getMovieDetails(movieId: Int) {
+        val action = GenreFragmentDirections.actionGenreFragmentToMovieDetailsFragment(movieId)
+        findNavController().navigate(action)
     }
 
     private fun setupGridAdapter() {

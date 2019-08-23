@@ -30,12 +30,12 @@ import com.mvvm.tmdb.ui.adapter.MoviesAdapter
 /**
  * [BindingAdapter]s for the [Movie]s list.
  */
-@BindingAdapter("app:items")
+@BindingAdapter("items")
 fun setItems(listView: RecyclerView, items: List<Result>) {
     (listView.adapter as MoviesAdapter).submitList(items)
 }
 
-@BindingAdapter("app:setImage")
+@BindingAdapter("setImage")
 fun setImage(imageView: ImageView, path: String) {
     Glide.with(imageView.context)
             .load("${AppConstants.IMAGE_PATH}$path")
@@ -43,7 +43,15 @@ fun setImage(imageView: ImageView, path: String) {
             .into(imageView)
 }
 
-@BindingAdapter("app:genre_items")
+@BindingAdapter("setBigImage")
+fun setBigImage(imageView: ImageView, path: String) {
+    Glide.with(imageView.context)
+        .load("${AppConstants.IMAGE_PATH_BIG}$path")
+        .placeholder(R.drawable.place_holder_big)
+        .into(imageView)
+}
+
+@BindingAdapter("genre_items")
 fun setGenreList(listView: RecyclerView, items: Array<AppConstants.Genre>) {
     (listView.adapter as GenreAdapter).submitList(items.asList())
 }

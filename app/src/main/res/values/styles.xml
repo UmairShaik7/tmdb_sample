@@ -30,5 +30,10 @@
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Title</item>
     </style>
 
+    <style name="movie_description">
+        <item name="android:textSize">@dimen/text_15</item>
+        <item name="android:textAppearance">@style/TextAppearance.AppCompat.Subhead</item>
+    </style>
+
 
 </resources>

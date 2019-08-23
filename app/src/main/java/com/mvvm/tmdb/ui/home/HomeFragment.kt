@@ -13,6 +13,7 @@ import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
 import com.mvvm.tmdb.ui.adapter.GenreAdapter
 import com.mvvm.tmdb.ui.adapter.MoviesAdapter
+import com.mvvm.tmdb.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -20,7 +21,8 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * A simple [Fragment] subclass.
  *
  */
-class HomeFragment : Fragment() {
+class HomeFragment : BaseFragment() {
+
 
     private lateinit var viewDataBinding: FragmentHomeBinding
     // lazy inject MyViewModel
@@ -35,8 +37,8 @@ class HomeFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         //inflater.inflate(R.layout.fragment_home, container, false)
@@ -58,13 +60,22 @@ class HomeFragment : Fragment() {
 
     private fun setupObservers() {
 
-        vm.genreLiveData.observe(this, EventObserver {
+        vm.genreLiveData.observe(viewLifecycleOwner, EventObserver {
             it.also { getAllGenreCategory(it) }
         })
 
         vm.latestMoviesResult.observe(viewLifecycleOwner, Observer { it ->
             if (!it.isNullOrEmpty()) latestMoviesListAdapter.submitList(it)
         })
+
+        vm.itemClick.observe(viewLifecycleOwner, EventObserver {
+            getMovieDetails(it)
+        })
+    }
+
+    override fun getMovieDetails(movieId: Int) {
+        val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId)
+        findNavController().navigate(action)
     }
 
     private fun getAllGenreCategory(genreType: String) {
@@ -97,19 +108,19 @@ class HomeFragment : Fragment() {
     private var searchView: SearchView? = null
 
     private var onQueryTextListener: SearchView.OnQueryTextListener? =
-        object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String): Boolean {
-                val action = HomeFragmentDirections.actionHomeFragmentToSearchableFragment(query)
-                findNavController().navigate(action)
-                Toast.makeText(context, query, Toast.LENGTH_LONG).show()
-                return true
-            }
+            object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String): Boolean {
+                    val action = HomeFragmentDirections.actionHomeFragmentToSearchableFragment(query)
+                    findNavController().navigate(action)
+                    Toast.makeText(context, query, Toast.LENGTH_LONG).show()
+                    return true
+                }
 
-            override fun onQueryTextChange(newText: String): Boolean {
-                // do nothing
-                return true
+                override fun onQueryTextChange(newText: String): Boolean {
+                    // do nothing
+                    return true
+                }
             }
-        }
 
     private fun searchView(menu: Menu?): SearchView? {
         val searchItem = menu?.findItem(R.id.action_search)

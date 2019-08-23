@@ -19,12 +19,19 @@
         <action
             android:id="@+id/action_homeFragment_to_searchableFragment"
             app:destination="@id/searchableFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_movieDetailsFragment2"
+            app:destination="@id/movieDetailsFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieDetailsFragment"
         android:name="com.mvvm.tmdb.ui.details.MovieDetailsFragment"
         android:label="movie_details_fragment"
-        tools:layout="@layout/movie_details_fragment" />
+        tools:layout="@layout/movie_details_fragment" >
+        <argument
+            android:name="movieID"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/genreFragment"
         android:name="com.mvvm.tmdb.ui.genre.GenreFragment"
@@ -52,5 +59,8 @@
         <argument
             android:name="query"
             app:argType="string" />
+        <action
+            android:id="@+id/action_searchableFragment_to_movieDetailsFragment"
+            app:destination="@id/movieDetailsFragment" />
     </fragment>
 </navigation>

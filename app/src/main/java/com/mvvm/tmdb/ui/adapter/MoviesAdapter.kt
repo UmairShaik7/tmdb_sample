@@ -1,11 +1,10 @@
 package com.mvvm.tmdb.ui.adapter
 
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.ui.BaseViewModel
+import com.mvvm.tmdb.ui.base.BaseViewModel
 import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
 
 /**
