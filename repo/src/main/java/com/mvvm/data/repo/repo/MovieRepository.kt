@@ -18,8 +18,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 
 class MovieRepository(
-        private var dbSource: LocalDataSource,
-        private var remoteSource: RemoteNetworkSource
+    private var dbSource: LocalDataSource,
+    private var remoteSource: RemoteNetworkSource
 ) {
 
     private suspend fun getLatestMovies(): DBResult<List<Result>> {
@@ -69,10 +69,7 @@ class MovieRepository(
         if (remoteNetworkData.isSuccessful) {
             val results = remoteNetworkData.body()?.results
             results?.let { list ->
-                list.mapInPlace {
-                    it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type)
-
-                }
+                list.mapInPlace { it.copy(category = AppConstants.MovieCategories.TOP_MOVIES.type) }
                 dbSource.insertTopMovies(list)
                 return dbSource.getTopMovies()
             }
@@ -117,8 +114,8 @@ class MovieRepository(
 
         // Get the paged list
         val data = LivePagedListBuilder(dataSourceFactory, AppConstants.DATABASE_PAGE_SIZE)
-                .setBoundaryCallback(boundaryCallback)
-                .build()
+            .setBoundaryCallback(boundaryCallback)
+            .build()
 
         // Get the network errors exposed by the boundary callback
         return data
@@ -128,7 +125,7 @@ class MovieRepository(
     fun searchMovie(query: String): LiveData<PagedList<Result>> {
         val sourceFactory = MovieDataSourceFactory(remoteSource, query)
 
-        return sourceFactory.toLiveData(20)
+        return sourceFactory.toLiveData(30)
 
     }
 
@@ -137,7 +134,7 @@ class MovieRepository(
     }
 
     fun insertMovie(filter: List<Result>) {
-       runBlocking(Dispatchers.IO) {dbSource.insertTopMovies(filter)}
+        runBlocking(Dispatchers.IO) { dbSource.insertTopMovies(filter) }
     }
 
 }

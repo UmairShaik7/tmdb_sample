@@ -5,7 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
 class GenreConverter {
-    val gson = Gson()
+    private val gson = Gson()
     @TypeConverter
     fun fromGenreIds(countryLang: List<Int?>): String? {
         if (!countryLang.isNullOrEmpty()) {

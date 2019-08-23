@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -60,7 +59,7 @@ class GenreFragment : BaseFragment() {
         })
     }
 
-     override fun getMovieDetails(movieId: Int) {
+    override fun getMovieDetails(movieId: Int) {
         val action = GenreFragmentDirections.actionGenreFragmentToMovieDetailsFragment(movieId)
         findNavController().navigate(action)
     }

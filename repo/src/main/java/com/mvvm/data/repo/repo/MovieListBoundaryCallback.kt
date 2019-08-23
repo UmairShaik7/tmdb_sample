@@ -1,6 +1,5 @@
 package com.mvvm.data.repo.repo
 
-import android.util.Log
 import androidx.paging.PagedList
 import com.mvvm.data.repo.db.LocalDataSource
 import com.mvvm.data.repo.model.Result
@@ -25,7 +24,7 @@ class MovieListBoundaryCallback(
      * Database returned 0 items. We should query the backend for more items.
      */
     override fun onZeroItemsLoaded() {
-       requestAndSaveData(query)
+        requestAndSaveData(query)
     }
 
     /**

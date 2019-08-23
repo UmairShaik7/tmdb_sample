@@ -10,7 +10,7 @@ abstract class BaseViewModel(private val repo: MovieRepository) : ViewModel() {
 
     var getMovieWithID = MutableLiveData<Int>()
 
-    val movieDetails = getMovieWithID.switchMap { it -> repo.getMovieDetails(it) }
+    val movieDetails = getMovieWithID.switchMap { repo.getMovieDetails(it) }
 
     val itemClick = MutableLiveData<Event<Int>>()
     open fun movieOnclick(movieId: Int) {

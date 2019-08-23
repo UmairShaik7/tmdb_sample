@@ -31,7 +31,7 @@ interface ResultsDao {
     fun getAllMovies(): LiveData<List<Result>>
 
     @Query("SELECT * FROM result where genre_ids like :item")
-    fun getGenra(item: String): DataSource.Factory<Int, Result>
+    fun getMoviesWithGenra(item: String): DataSource.Factory<Int, Result>
 
     @Query("SELECT * FROM result where id is :movieId")
     fun getMovie(movieId: Int): Result

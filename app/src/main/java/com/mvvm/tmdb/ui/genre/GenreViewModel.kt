@@ -12,11 +12,11 @@ import com.mvvm.tmdb.ui.base.BaseViewModel
 class GenreViewModel(private val repo: MovieRepository) : BaseViewModel(repo) {
 
     private val queryLiveData = MutableLiveData<String>()
-   /* private val repoResult: LiveData<LiveData<PagedList<Result>>> = queryLiveData.map {
-        repo.getGenreMoviesLiveData(it)
-    }*/
+    /* private val repoResult: LiveData<LiveData<PagedList<Result>>> = queryLiveData.map {
+         repo.getGenreMoviesLiveData(it)
+     }*/
 
-    val repos: LiveData<PagedList<Result>> = queryLiveData.switchMap { it ->
+    val repos: LiveData<PagedList<Result>> = queryLiveData.switchMap {
         repo.getGenreMoviesLiveData(it)
     }
 

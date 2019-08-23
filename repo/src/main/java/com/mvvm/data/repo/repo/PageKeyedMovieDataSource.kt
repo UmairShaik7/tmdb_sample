@@ -4,8 +4,7 @@ import androidx.paging.PageKeyedDataSource
 import com.mvvm.data.repo.model.Result
 import com.mvvm.data.repo.network.RemoteNetworkSource
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class PageKeyedMovieDataSource(
     private val remoteSource: RemoteNetworkSource,
@@ -27,7 +26,7 @@ class PageKeyedMovieDataSource(
     private fun loadData(callback: LoadInitialCallback<Int, Result>) {
         if (isRequestInProgress) return
         isRequestInProgress = true
-        GlobalScope.launch(Dispatchers.IO) {
+        runBlocking(Dispatchers.IO) {
             val response = remoteSource.getSearchResults(searchQuery, lastPageResult)
             val data = response.body()?.results
             data?.let {
@@ -40,7 +39,7 @@ class PageKeyedMovieDataSource(
 
     override fun loadAfter(params: LoadParams<Int>, callback: LoadCallback<Int, Result>) {
         isRequestInProgress = true
-        GlobalScope.launch(Dispatchers.IO) {
+        runBlocking(Dispatchers.IO) {
             val response = remoteSource.getSearchResults(searchQuery, lastPageResult)
             val data = response.body()?.results
             data?.let {

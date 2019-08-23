@@ -6,14 +6,14 @@ import com.mvvm.data.repo.model.Result
 
 object AppConstants {
 
-    const val IMAGE_PATH_BIG=  "https://image.tmdb.org/t/p/w780"
-    const val DATABASE_PAGE_SIZE = 10
+    const val IMAGE_PATH_BIG = "https://image.tmdb.org/t/p/w780"
+    const val DATABASE_PAGE_SIZE = 40
     const val DEFAULT_LANGUAGE = "en-US"
     const val TMDB_BASE_URL = "https://api.themoviedb.org/3/"
     const val IMAGE_PATH = "https://image.tmdb.org/t/p/w342"
     const val API_KEY = BuildConfig.TMDB_API_KEY
     const val SERVER_DATE_FORMATE = "yyyy-MM-dd"
-    const val YEAR_FORMATE="YYYY"
+    const val YEAR_FORMATE = "YYYY"
 
     enum class Genre(val code: String) {
         ACTION("28"),
@@ -50,11 +50,13 @@ object AppConstants {
      * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
      * list that's been passed to `submitList`.
      */
-    val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
-        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
-            oldItem.id == newItem.id
+    val MOVIE_COMPARATOR by lazy {
+        object : DiffUtil.ItemCallback<Result>() {
+            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
+                oldItem.id == newItem.id
 
-        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
-            oldItem == newItem
+            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
+                oldItem == newItem
+        }
     }
 }

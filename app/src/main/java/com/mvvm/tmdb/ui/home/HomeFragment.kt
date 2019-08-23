@@ -1,9 +1,10 @@
 package com.mvvm.tmdb.ui.home
 
 
+import android.app.SearchManager
+import android.content.Context
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -33,12 +34,12 @@ class HomeFragment : BaseFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true)
     }
 
     override fun onCreateView(
-            inflater: LayoutInflater, container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         //inflater.inflate(R.layout.fragment_home, container, false)
@@ -64,7 +65,7 @@ class HomeFragment : BaseFragment() {
             it.also { getAllGenreCategory(it) }
         })
 
-        vm.latestMoviesResult.observe(viewLifecycleOwner, Observer { it ->
+        vm.latestMoviesResult.observe(viewLifecycleOwner, Observer {
             if (!it.isNullOrEmpty()) latestMoviesListAdapter.submitList(it)
         })
 
@@ -98,33 +99,40 @@ class HomeFragment : BaseFragment() {
         viewDataBinding.latestMoviesList.adapter = latestMoviesListAdapter
     }
 
+
+    private var searchView: SearchView? = null
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.main_activity_actions, menu)
-        searchView = searchView(menu)
+        searchView = getSearchView(menu)
         searchView?.queryHint = getString(R.string.search)
         searchView?.setOnQueryTextListener(onQueryTextListener)
     }
 
-    private var searchView: SearchView? = null
-
     private var onQueryTextListener: SearchView.OnQueryTextListener? =
-            object : SearchView.OnQueryTextListener {
-                override fun onQueryTextSubmit(query: String): Boolean {
-                    val action = HomeFragmentDirections.actionHomeFragmentToSearchableFragment(query)
-                    findNavController().navigate(action)
-                    Toast.makeText(context, query, Toast.LENGTH_LONG).show()
-                    return true
-                }
-
-                override fun onQueryTextChange(newText: String): Boolean {
-                    // do nothing
-                    return true
-                }
+        object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String): Boolean {
+                val action = HomeFragmentDirections.actionHomeFragmentToSearchableFragment(query)
+                findNavController().navigate(action)
+                return true
             }
 
-    private fun searchView(menu: Menu?): SearchView? {
-        val searchItem = menu?.findItem(R.id.action_search)
-        return searchItem?.actionView as? SearchView
+            override fun onQueryTextChange(newText: String): Boolean {
+                // do nothing
+                return true
+            }
+        }
+
+    private fun getSearchView(menu: Menu?): SearchView? {
+        val searchItem = menu?.findItem(R.id.action_search).apply { }
+        val searchView = searchItem?.actionView as? SearchView
+        val searchManager = activity?.getSystemService(Context.SEARCH_SERVICE) as SearchManager
+        searchView?.apply {
+            setSearchableInfo(searchManager.getSearchableInfo(activity?.componentName))
+            setIconifiedByDefault(false) // Do not iconify the widget; expand it by default
+            isQueryRefinementEnabled = true
+        }
+        return searchView
     }
 
 
