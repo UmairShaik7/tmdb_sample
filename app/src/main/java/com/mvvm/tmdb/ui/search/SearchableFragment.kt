@@ -11,13 +11,13 @@ import androidx.navigation.fragment.navArgs
 import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.SearchableFragmentBinding
-import com.mvvm.tmdb.ui.adapter.GeneraPagedAdapter
+import com.mvvm.tmdb.ui.adapter.MoviesListAdapter
 import com.mvvm.tmdb.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchableFragment : BaseFragment() {
 
-    private lateinit var gridAdapter: GeneraPagedAdapter
+    private lateinit var gridAdapter: MoviesListAdapter
     private val vm: SearchViewModel by viewModel()
     private lateinit var binding: SearchableFragmentBinding
     private val args: SearchableFragmentArgs by navArgs()
@@ -47,7 +47,7 @@ class SearchableFragment : BaseFragment() {
     }
 
     private fun setUpAdapter() {
-        gridAdapter = GeneraPagedAdapter(vm)
+        gridAdapter = MoviesListAdapter(vm)
         binding.searchList.adapter = gridAdapter
     }
 
@@ -56,11 +56,11 @@ class SearchableFragment : BaseFragment() {
             gridAdapter.submitList(it)
         })
         vm.itemClick.observe(viewLifecycleOwner, EventObserver {
-            getMovieDetails(it)
+            showMovieDetails(it)
         })
     }
 
-    override fun getMovieDetails(movieId: Int) {
+    override fun showMovieDetails(movieId: Int) {
         val action =
             SearchableFragmentDirections.actionSearchableFragmentToMovieDetailsFragment(movieId)
         findNavController().navigate(action)

@@ -10,10 +10,10 @@ import com.mvvm.tmdb.ui.home.HomeFragmentViewModel
 /**
  * Adapter for the Movies list. Has a reference to the [HomeFragmentViewModel] to send actions back to it.
  */
-class MoviesAdapter(private val viewModel: BaseViewModel) :
-    ListAdapter<Result, MovieViewHolder>(AppConstants.MOVIE_COMPARATOR) {
+class MoviesListAdapter(private val viewModel: BaseViewModel) :
+    ListAdapter<Result, MovieViewListHolder>(AppConstants.MOVIE_COMPARATOR) {
 
-    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewListHolder, position: Int) {
         getItem(position).let {
             with(holder) {
                 itemView.tag = it
@@ -22,8 +22,8 @@ class MoviesAdapter(private val viewModel: BaseViewModel) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
-        return MovieViewHolder.from(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewListHolder {
+        return MovieViewListHolder.from(parent)
     }
 
 

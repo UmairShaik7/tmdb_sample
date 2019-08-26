@@ -24,7 +24,7 @@ import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.extentions.getYear
 import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.ui.adapter.GenreAdapter
-import com.mvvm.tmdb.ui.adapter.MoviesAdapter
+import com.mvvm.tmdb.ui.adapter.MoviesGridAdapter
 
 
 /**
@@ -32,7 +32,7 @@ import com.mvvm.tmdb.ui.adapter.MoviesAdapter
  */
 @BindingAdapter("items")
 fun setItems(listView: RecyclerView, items: List<Result>) {
-    (listView.adapter as MoviesAdapter).submitList(items)
+    (listView.adapter as MoviesGridAdapter).submitList(items)
 }
 
 @BindingAdapter("setImage")

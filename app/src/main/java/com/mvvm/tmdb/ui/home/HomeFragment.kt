@@ -13,7 +13,7 @@ import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.FragmentHomeBinding
 import com.mvvm.tmdb.ui.adapter.GenreAdapter
-import com.mvvm.tmdb.ui.adapter.MoviesAdapter
+import com.mvvm.tmdb.ui.adapter.MoviesGridAdapter
 import com.mvvm.tmdb.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -28,8 +28,8 @@ class HomeFragment : BaseFragment() {
     private lateinit var viewDataBinding: FragmentHomeBinding
     // lazy inject MyViewModel
     private val vm: HomeFragmentViewModel by viewModel()
-    private lateinit var latestMoviesListAdapter: MoviesAdapter
-    private lateinit var topMoviesListAdapter: MoviesAdapter
+    private lateinit var latestMoviesListAdapter: MoviesGridAdapter
+    private lateinit var topMoviesListAdapter: MoviesGridAdapter
     private lateinit var genreListAdapter: GenreAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,11 +70,11 @@ class HomeFragment : BaseFragment() {
         })
 
         vm.itemClick.observe(viewLifecycleOwner, EventObserver {
-            getMovieDetails(it)
+            showMovieDetails(it)
         })
     }
 
-    override fun getMovieDetails(movieId: Int) {
+    override fun showMovieDetails(movieId: Int) {
         val action = HomeFragmentDirections.actionHomeFragmentToMovieDetailsFragment(movieId)
         findNavController().navigate(action)
     }
@@ -90,12 +90,12 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun setupTopMoviesListAdapter() {
-        topMoviesListAdapter = MoviesAdapter(vm)
+        topMoviesListAdapter = MoviesGridAdapter(vm)
         viewDataBinding.topMoviesList.adapter = topMoviesListAdapter
     }
 
     private fun setupLatestMoviesListAdapter() {
-        latestMoviesListAdapter = MoviesAdapter(vm)
+        latestMoviesListAdapter = MoviesGridAdapter(vm)
         viewDataBinding.latestMoviesList.adapter = latestMoviesListAdapter
     }
 

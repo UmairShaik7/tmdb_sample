@@ -12,17 +12,13 @@ import com.mvvm.data.repo.model.Result
 import com.mvvm.tmdb.EventObserver
 import com.mvvm.tmdb.R
 import com.mvvm.tmdb.databinding.GenreFragmentBinding
-import com.mvvm.tmdb.ui.adapter.GeneraPagedAdapter
+import com.mvvm.tmdb.ui.adapter.MoviesListAdapter
 import com.mvvm.tmdb.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class GenreFragment : BaseFragment() {
 
-    /* companion object {
-         fun newInstance() = GenreFragment()
-     }*/
-
-    private lateinit var gridAdapter: GeneraPagedAdapter
+    private lateinit var gridAdapter: MoviesListAdapter
     private lateinit var viewBind: GenreFragmentBinding
     private val vm: GenreViewModel by viewModel()
     private val args: GenreFragmentArgs by navArgs()
@@ -55,17 +51,17 @@ class GenreFragment : BaseFragment() {
         })
 
         vm.itemClick.observe(viewLifecycleOwner, EventObserver {
-            getMovieDetails(it)
+            showMovieDetails(it)
         })
     }
 
-    override fun getMovieDetails(movieId: Int) {
+    override fun showMovieDetails(movieId: Int) {
         val action = GenreFragmentDirections.actionGenreFragmentToMovieDetailsFragment(movieId)
         findNavController().navigate(action)
     }
 
     private fun setupGridAdapter() {
-        gridAdapter = GeneraPagedAdapter(vm)
+        gridAdapter = MoviesListAdapter(vm)
         viewBind.tasksList.adapter = gridAdapter
     }
 }

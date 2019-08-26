@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.mvvm.data.repo.model.Result
-import com.mvvm.tmdb.databinding.MovieItemBinding
+import com.mvvm.tmdb.databinding.MovieItemListBinding
 import com.mvvm.tmdb.ui.base.BaseViewModel
 
-class MovieViewHolder private constructor(private val binding: MovieItemBinding) :
+class MovieViewListHolder private constructor(private val binding: MovieItemListBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(viewModel: BaseViewModel, item: Result) {
@@ -18,11 +18,11 @@ class MovieViewHolder private constructor(private val binding: MovieItemBinding)
     }
 
     companion object {
-        fun from(parent: ViewGroup): MovieViewHolder {
+        fun from(parent: ViewGroup): MovieViewListHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
-            val binding = MovieItemBinding.inflate(layoutInflater, parent, false)
+            val binding = MovieItemListBinding.inflate(layoutInflater, parent, false)
 
-            return MovieViewHolder(binding)
+            return MovieViewListHolder(binding)
         }
     }
 }
