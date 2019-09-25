@@ -50,13 +50,12 @@ object AppConstants {
      * Used by ListAdapter to calculate the minimum number of changes between and old list and a new
      * list that's been passed to `submitList`.
      */
-    val MOVIE_COMPARATOR by lazy {
-        object : DiffUtil.ItemCallback<Result>() {
-            override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
-                oldItem.id == newItem.id
+    val MOVIE_COMPARATOR = object : DiffUtil.ItemCallback<Result>() {
+        override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean =
+            oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
-                oldItem == newItem
-        }
+        override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean =
+            oldItem == newItem
     }
+
 }

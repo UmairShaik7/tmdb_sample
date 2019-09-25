@@ -8,6 +8,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../Demo/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/../KotlinCoroutinesRetrofit/app/src/main/java/com/chase/kotlincoroutines/network/RetrofitService.kt">
           <value>
             <set />
@@ -19,6 +24,66 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/../RetrofitKotlinDeferred/app/src/main/java/io/navendra/retrofitkotlindeferred/ui/MainActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/build/generated/source/kapt/debug/com/example/android/observability/persistence/UserDao_Impl.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/java/com/example/android/observability/persistence/UserDao.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/java/com/example/android/observability/ui/UserActivity.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/java/com/example/android/observability/ui/UserViewModel.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/java/com/example/android/observability/ui/adapters/ContactsListAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/java/com/example/android/observability/ui/adapters/UserAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/java/com/example/android/observability/ui/adapters/item.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/res/layout/activity_user.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/app/src/main/res/layout/item_user.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/gradle.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../android-architecture-components/BasicRxJavaSampleKotlin/versions.gradle">
           <value>
             <set />
           </value>
@@ -174,6 +239,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/adapter/GenreAdapter.kt">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/mvvm/tmdb/ui/adapter/MovieViewGridHolder.kt">
           <value>
             <set />
           </value>
