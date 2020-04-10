@@ -4,17 +4,13 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 29
-
-
+    compileSdkVersion Versions.compileSDK
     defaultConfig {
-        minSdkVersion 23
-        targetSdkVersion 29
+        minSdkVersion Versions.minSDK
+        targetSdkVersion Versions.targetSDK
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -47,35 +43,36 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    implementation 'androidx.appcompat:appcompat:1.1.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    api LibDeps.appCompat
+    //testing
+    testImplementation LibDeps.junit
+    androidTestImplementation LibDeps.testRunner
+    androidTestImplementation LibDeps.androidxTest
 
-    implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.50'
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.0'
+    api LibDeps.kotlin
+    api LibDeps.coroutineLib
 
     //httpOk and Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.6.1'
-    implementation 'com.squareup.retrofit2:converter-moshi:2.6.1'
-    implementation 'com.squareup.okhttp3:okhttp:4.0.0'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.0.0'
-    implementation 'org.jetbrains.anko:anko:0.10.8'
+    api LibDeps.retrofit
+    api LibDeps.mouchine
+    api LibDeps.okHttp3
+    api LibDeps.httpLogging
+    api LibDeps.coreAnko
 
     //room
-    implementation 'androidx.room:room-runtime:2.2.0-rc01'
-    kapt 'androidx.room:room-compiler:2.2.0-rc01'
+    api LibDeps.roomLib
+    kapt LibDeps.roomLibCompiler
     // optional - Kotlin Extensions and Coroutines support for Room
-    implementation 'androidx.room:room-ktx:2.2.0-rc01'
+    api LibDeps.roomCore
     //gson for typeconverter
-    implementation 'com.google.code.gson:gson:2.8.5'
+    api LibDeps.gson
 
     // Koin AndroidX Scope features
-    implementation 'org.koin:koin-androidx-scope:2.0.1'
-    implementation 'androidx.paging:paging-runtime-ktx:2.1.0'
+    api LibDeps.koinScope
+    api LibDeps.pagingLibKtx
 
     //live data
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha05'
+    api LibDeps.lifeCycleLiveDataKtx
 }
 
 repositories {
