@@ -9,7 +9,7 @@
     <string name="top_movies">Top Movies</string>
     <string name="genre">Genre</string>
     <string name="def_image">https://www.themoviedb.org/assets/1/v4/logos/primary-green-d70eebe18a5eb5b166d5c1ef0796715b8d1a2cbc698f96d311d62f894ae87085.svg</string>
-    <string name="search">Search</string>
+    <string name="search">Search Movie</string>
     <string name="movieimage">Movie Image</string>
     <string name="rating">Rating</string>
     <string name="year">Year</string>

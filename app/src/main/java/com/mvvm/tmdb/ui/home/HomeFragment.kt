@@ -24,18 +24,12 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class HomeFragment : BaseFragment() {
 
-
     private lateinit var viewDataBinding: FragmentHomeBinding
     // lazy inject MyViewModel
     private val vm: HomeFragmentViewModel by viewModel()
     private lateinit var latestMoviesListAdapter: MoviesGridAdapter
     private lateinit var topMoviesListAdapter: MoviesGridAdapter
     private lateinit var genreListAdapter: GenreAdapter
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setHasOptionsMenu(true)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,6 +41,7 @@ class HomeFragment : BaseFragment() {
         //.inflate(inflater, R.layout.fragment_home, container, false)
         viewDataBinding.viewmodel = vm
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+        setHasOptionsMenu(true)
         return viewDataBinding.root
     }
 
