@@ -3,9 +3,14 @@ package com.mvvm.tmdb.ui.home
 
 import android.app.SearchManager
 import android.content.Context
+import android.database.Cursor
+import android.database.MatrixCursor
 import android.os.Bundle
+import android.provider.BaseColumns
 import android.view.*
 import androidx.appcompat.widget.SearchView
+import androidx.cursoradapter.widget.CursorAdapter
+import androidx.cursoradapter.widget.SimpleCursorAdapter
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -16,6 +21,7 @@ import com.mvvm.tmdb.ui.adapter.GenreAdapter
 import com.mvvm.tmdb.ui.adapter.MoviesGridAdapter
 import com.mvvm.tmdb.ui.base.BaseFragment
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import java.util.*
 
 
 /**
@@ -25,11 +31,19 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class HomeFragment : BaseFragment() {
 
     private lateinit var viewDataBinding: FragmentHomeBinding
+
     // lazy inject MyViewModel
     private val vm: HomeFragmentViewModel by viewModel()
     private lateinit var latestMoviesListAdapter: MoviesGridAdapter
     private lateinit var topMoviesListAdapter: MoviesGridAdapter
     private lateinit var genreListAdapter: GenreAdapter
+
+    private val SUGGESTIONS = arrayOf(
+        "Bauru", "Sao Paulo", "Rio de Janeiro",
+        "Bahia", "Mato Grosso", "Minas Gerais",
+        "Tocantins", "Rio Grande do Sul"
+    )
+    private var mAdapter: SimpleCursorAdapter? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -52,6 +66,17 @@ class HomeFragment : BaseFragment() {
         setupGenreListAdapter()
         setupObservers()
         vm.getMovies()
+
+        val from = arrayOf("cityName")
+        val to = intArrayOf(android.R.id.text1)
+        mAdapter = SimpleCursorAdapter(
+            context,
+            android.R.layout.simple_list_item_1,
+            null,
+            from,
+            to,
+            CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER
+        )
     }
 
     private fun setupObservers() {
@@ -102,8 +127,28 @@ class HomeFragment : BaseFragment() {
         searchView = getSearchView(menu)
         searchView?.queryHint = getString(R.string.search)
         searchView?.setOnQueryTextListener(onQueryTextListener)
+        searchView?.suggestionsAdapter = mAdapter
+        searchView?.setIconifiedByDefault(false)
+
+        // Getting selected (clicked) item suggestion
+
+        // Getting selected (clicked) item suggestion
+        searchView?.setOnSuggestionListener(suggestionProvider)
     }
 
+    private var suggestionProvider = object : SearchView.OnSuggestionListener {
+        override fun onSuggestionClick(position: Int): Boolean {
+            val cursor: Cursor = mAdapter?.getItem(position) as Cursor
+            val txt: String = cursor.getString(cursor.getColumnIndex("cityName"))
+            searchView?.setQuery(txt, true)
+            return true
+        }
+
+        override fun onSuggestionSelect(position: Int): Boolean {
+            // Your code here
+            return true
+        }
+    }
     private var onQueryTextListener: SearchView.OnQueryTextListener? =
         object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String): Boolean {
@@ -114,9 +159,21 @@ class HomeFragment : BaseFragment() {
 
             override fun onQueryTextChange(newText: String): Boolean {
                 // do nothing
+                populateAdapter(newText);
                 return true
             }
         }
+
+    // You must implements your logic to get data using OrmLite
+    private fun populateAdapter(query: String) {
+        val c = MatrixCursor(arrayOf(BaseColumns._ID, "cityName"))
+        for (i in SUGGESTIONS.indices) {
+            if (SUGGESTIONS[i].toLowerCase(Locale.ROOT)
+                    .startsWith(query.toLowerCase(Locale.ROOT))
+            ) c.addRow(arrayOf<Any>(i, SUGGESTIONS[i]))
+        }
+        mAdapter?.changeCursor(c)
+    }
 
     private fun getSearchView(menu: Menu?): SearchView? {
         val searchItem = menu?.findItem(R.id.action_search).apply { }

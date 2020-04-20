@@ -1,1 +1,10 @@
-<manifest package="com.mvvm.data" />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mvvm.data">
+
+    <application>
+        <provider
+            android:name=".repo.db.MovieContentProvider"
+            android:authorities="com.mvvm.data.provider"
+            android:exported="true" />
+    </application>
+</manifest>

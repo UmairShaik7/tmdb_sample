@@ -5,6 +5,8 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
+const val TABLE_NAME = "movies_table"
+
 data class MoviesResponse(
     val dates: Dates,
     val page: Int,
@@ -18,7 +20,7 @@ data class Dates(
     val minimum: String
 )
 
-@Entity
+@Entity(tableName = TABLE_NAME)
 data class Result(
     @PrimaryKey
     @ColumnInfo(name = "id")

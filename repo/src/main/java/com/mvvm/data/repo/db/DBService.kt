@@ -7,7 +7,7 @@ class DBService(val context: Context) {
 
     var database: AppDatabase
 
-    init {
+      init {
         synchronized(this) {
             database = createDataBase(context)
         }

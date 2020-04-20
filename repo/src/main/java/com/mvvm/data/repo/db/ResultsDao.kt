@@ -1,5 +1,6 @@
 package com.mvvm.data.repo.db
 
+import android.database.Cursor
 import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.room.Dao
@@ -35,5 +36,10 @@ interface ResultsDao {
 
     @Query("SELECT * FROM result where id is :movieId")
     fun getMovie(movieId: Int): Result
+
+    @Query("SELECT title FROM result where title like :name")
+    fun getMovieNames(name: String): Cursor
+
+
 
 }
