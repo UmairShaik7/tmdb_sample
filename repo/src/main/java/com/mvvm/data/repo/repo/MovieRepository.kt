@@ -93,10 +93,10 @@ class MovieRepository(
         }
     }
 
-
-    fun getLatestMoviesLiveData(): LiveData<List<Result>> = liveData {
+    suspend fun getLatestMoviesLiveData(): List<Result> = withContext(Dispatchers.IO) {
         when (val data = getLatestMovies()) {
-            is DBResult.Success -> emit(data.data)
+            is DBResult.Success -> return@withContext data.data
+            else -> emptyList<Result>()
         }
 
     }

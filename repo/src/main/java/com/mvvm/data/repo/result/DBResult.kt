@@ -19,9 +19,3 @@ sealed class DBResult<out R> {
         }
     }
 }
-
-/**
- * `true` if [DBResult] is of type [Success] & holds non-null [Success.data].
- */
-val DBResult<*>.succeeded
-    get() = this is DBResult.Success && data != null

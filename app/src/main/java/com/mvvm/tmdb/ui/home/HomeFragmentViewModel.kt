@@ -1,6 +1,8 @@
 package com.mvvm.tmdb.ui.home
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.liveData
 import androidx.lifecycle.viewModelScope
 import com.mvvm.data.repo.AppConstants
 import com.mvvm.data.repo.model.Result
@@ -13,7 +15,8 @@ import kotlinx.coroutines.launch
 
 class HomeFragmentViewModel(private val repo: MovieRepository) : BaseViewModel(repo) {
 
-    val latestMoviesResult = repo.getLatestMoviesLiveData()
+    var latestMoviesResult :LiveData<List<Result>> =liveData { emit(repo.getLatestMoviesLiveData()) }
+        //liveData { emit(repo.getLatestMoviesLiveData()) }
     val topMoviesResult = MutableLiveData<List<Result>>().apply { value = emptyList() }
     val genreResult = MutableLiveData<Array<AppConstants.Genre>>().apply {
         value = enumValues()
